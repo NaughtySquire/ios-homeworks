@@ -13,10 +13,11 @@
 		794D507C28183BFA00B1A28E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 794D507A28183BFA00B1A28E /* Main.storyboard */; };
 		794D507E28183BFB00B1A28E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 794D507D28183BFB00B1A28E /* Assets.xcassets */; };
 		794D508128183BFB00B1A28E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 794D507F28183BFB00B1A28E /* LaunchScreen.storyboard */; };
+		798A10A928185C7700F507FB /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 798A10A828185C7700F507FB /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		794D507128183BFA00B1A28E /* Netology_IB_Instruments'.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Netology_IB_Instruments'.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		794D507128183BFA00B1A28E /* Netology_IB_Instruments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Netology_IB_Instruments.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		794D507428183BFA00B1A28E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		794D507628183BFA00B1A28E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		794D507828183BFA00B1A28E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +25,7 @@
 		794D507D28183BFB00B1A28E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		794D508028183BFB00B1A28E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		794D508228183BFB00B1A28E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		798A10A828185C7700F507FB /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +42,7 @@
 		794D506828183BFA00B1A28E = {
 			isa = PBXGroup;
 			children = (
-				794D507328183BFA00B1A28E /* Netology_IB_Instruments' */,
+				794D507328183BFA00B1A28E /* Netology_IB_Instruments */,
 				794D507228183BFA00B1A28E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,12 +50,12 @@
 		794D507228183BFA00B1A28E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				794D507128183BFA00B1A28E /* Netology_IB_Instruments'.app */,
+				794D507128183BFA00B1A28E /* Netology_IB_Instruments.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		794D507328183BFA00B1A28E /* Netology_IB_Instruments' */ = {
+		794D507328183BFA00B1A28E /* Netology_IB_Instruments */ = {
 			isa = PBXGroup;
 			children = (
 				794D507428183BFA00B1A28E /* AppDelegate.swift */,
@@ -63,16 +65,17 @@
 				794D507D28183BFB00B1A28E /* Assets.xcassets */,
 				794D507F28183BFB00B1A28E /* LaunchScreen.storyboard */,
 				794D508228183BFB00B1A28E /* Info.plist */,
+				798A10A828185C7700F507FB /* .gitignore */,
 			);
-			path = "Netology_IB_Instruments'";
+			path = Netology_IB_Instruments;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		794D507028183BFA00B1A28E /* Netology_IB_Instruments' */ = {
+		794D507028183BFA00B1A28E /* Netology_IB_Instruments */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 794D508528183BFB00B1A28E /* Build configuration list for PBXNativeTarget "Netology_IB_Instruments'" */;
+			buildConfigurationList = 794D508528183BFB00B1A28E /* Build configuration list for PBXNativeTarget "Netology_IB_Instruments" */;
 			buildPhases = (
 				794D506D28183BFA00B1A28E /* Sources */,
 				794D506E28183BFA00B1A28E /* Frameworks */,
@@ -82,9 +85,9 @@
 			);
 			dependencies = (
 			);
-			name = "Netology_IB_Instruments'";
+			name = Netology_IB_Instruments;
 			productName = "Netology_IB_Instruments'";
-			productReference = 794D507128183BFA00B1A28E /* Netology_IB_Instruments'.app */;
+			productReference = 794D507128183BFA00B1A28E /* Netology_IB_Instruments.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -102,7 +105,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 794D506C28183BFA00B1A28E /* Build configuration list for PBXProject "Netology_IB_Instruments'" */;
+			buildConfigurationList = 794D506C28183BFA00B1A28E /* Build configuration list for PBXProject "Netology_IB_Instruments" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -115,7 +118,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				794D507028183BFA00B1A28E /* Netology_IB_Instruments' */,
+				794D507028183BFA00B1A28E /* Netology_IB_Instruments */,
 			);
 		};
 /* End PBXProject section */
@@ -125,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				798A10A928185C7700F507FB /* .gitignore in Resources */,
 				794D508128183BFB00B1A28E /* LaunchScreen.storyboard in Resources */,
 				794D507E28183BFB00B1A28E /* Assets.xcassets in Resources */,
 				794D507C28183BFA00B1A28E /* Main.storyboard in Resources */,
@@ -339,7 +343,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		794D506C28183BFA00B1A28E /* Build configuration list for PBXProject "Netology_IB_Instruments'" */ = {
+		794D506C28183BFA00B1A28E /* Build configuration list for PBXProject "Netology_IB_Instruments" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				794D508328183BFB00B1A28E /* Debug */,
@@ -348,7 +352,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		794D508528183BFB00B1A28E /* Build configuration list for PBXNativeTarget "Netology_IB_Instruments'" */ = {
+		794D508528183BFB00B1A28E /* Build configuration list for PBXNativeTarget "Netology_IB_Instruments" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				794D508628183BFB00B1A28E /* Debug */,
