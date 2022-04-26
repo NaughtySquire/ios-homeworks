@@ -43,6 +43,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7909CE2428185D3A00704E42 /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				794D508828183C3F00B1A28E /* ProfileView.xib */,
+				794D508B281849DA00B1A28E /* ProfileView.swift */,
+			);
+			path = ProfileView;
+			sourceTree = "<group>";
+		};
 		794D506828183BFA00B1A28E = {
 			isa = PBXGroup;
 			children = (
@@ -62,13 +71,12 @@
 		794D507328183BFA00B1A28E /* Netology_IB_Instruments */ = {
 			isa = PBXGroup;
 			children = (
+				7909CE2428185D3A00704E42 /* ProfileView */,
 				794D508F28184EA200B1A28E /* Profile.storyboard */,
 				794D507428183BFA00B1A28E /* AppDelegate.swift */,
 				794D5091281857F700B1A28E /* .gitignore */,
 				794D507628183BFA00B1A28E /* SceneDelegate.swift */,
-				794D508828183C3F00B1A28E /* ProfileView.xib */,
 				794D508D28184E5700B1A28E /* ProfileViewController.swift */,
-				794D508B281849DA00B1A28E /* ProfileView.swift */,
 				794D507D28183BFB00B1A28E /* Assets.xcassets */,
 				794D507F28183BFB00B1A28E /* LaunchScreen.storyboard */,
 				794D508228183BFB00B1A28E /* Info.plist */,
@@ -293,7 +301,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V72FC8R65V;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Netology_IB_Instruments'/Info.plist";
+				INFOPLIST_FILE = Netology_IB_Instruments/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Profile;
@@ -304,7 +312,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Roman.Netology-IB-Instruments-";
+				PRODUCT_BUNDLE_IDENTIFIER = "Roman.Netology-IB-Instruments";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -321,7 +329,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V72FC8R65V;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Netology_IB_Instruments'/Info.plist";
+				INFOPLIST_FILE = Netology_IB_Instruments/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Profile;
@@ -332,7 +340,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Roman.Netology-IB-Instruments-";
+				PRODUCT_BUNDLE_IDENTIFIER = "Roman.Netology-IB-Instruments";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
