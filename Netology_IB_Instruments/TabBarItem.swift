@@ -12,6 +12,7 @@ class TabBarItem: UINavigationController {
         super.init(rootViewController: rootViewController)
         tabBarItem.title = title
         tabBarItem.image = UIImage(systemName: systemImageName)
+        navigationBar.backgroundColor = .systemBackground
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -20,5 +21,7 @@ class TabBarItem: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
+
 }
