@@ -25,7 +25,7 @@
 		794D507D28183BFB00B1A28E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		794D508028183BFB00B1A28E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		794D508228183BFB00B1A28E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		798A10A828185C7700F507FB /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		798A10A828185C7700F507FB /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; name = .gitignore; path = Netology_IB_Instruments/.gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +42,7 @@
 		794D506828183BFA00B1A28E = {
 			isa = PBXGroup;
 			children = (
+				798A10A828185C7700F507FB /* .gitignore */,
 				794D507328183BFA00B1A28E /* Netology_IB_Instruments */,
 				794D507228183BFA00B1A28E /* Products */,
 			);
@@ -65,7 +66,6 @@
 				794D507D28183BFB00B1A28E /* Assets.xcassets */,
 				794D507F28183BFB00B1A28E /* LaunchScreen.storyboard */,
 				794D508228183BFB00B1A28E /* Info.plist */,
-				798A10A828185C7700F507FB /* .gitignore */,
 			);
 			path = Netology_IB_Instruments;
 			sourceTree = "<group>";
