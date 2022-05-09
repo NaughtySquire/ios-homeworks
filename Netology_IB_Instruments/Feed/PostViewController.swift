@@ -26,7 +26,6 @@ class PostViewController: UIViewController {
     func showInfo(){
         let infoVC = InfoViewController()
         self.present(infoVC, animated: true)
-        UIAlertController(title: "1", message: "2", preferredStyle: .alert)
     }
     
 }
