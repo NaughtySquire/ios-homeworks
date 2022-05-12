@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
 
         let feedVC = TabBarItem(FeedViewController(), "Feed", "newspaper.circle.fill")
-        let profileVC = TabBarItem(ProfileViewController(), "Profile", "person.crop.circle.fill")
+        let profileVC = TabBarItem(LogInViewController(), "Profile", "person.crop.circle.fill")
         let rootVC = UITabBarController()
         rootVC.viewControllers = [profileVC, feedVC]
         rootVC.tabBar.backgroundColor = .systemBackground
