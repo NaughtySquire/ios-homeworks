@@ -46,7 +46,7 @@ class ProfileHeaderView: UIView {
         return textField
     }()
     private lazy var setStatusButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 50))
+        let button = UIButton()
         button.setTitleColor( UIColor.white , for: .normal)
         button.layer.masksToBounds = false
         button.layer.cornerRadius = 10
