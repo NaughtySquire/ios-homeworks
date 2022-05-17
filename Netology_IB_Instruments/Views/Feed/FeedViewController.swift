@@ -39,7 +39,8 @@ class FeedViewController: UIViewController {
 
     @objc
     func toPostButtonTapHandler(){
-        let post = Post(title: "Заголовок поста")
+        var post = Post()
+        post.title = "Новый пост"
         let postVC = PostViewController()
         postVC.post = post
         navigationController?.pushViewController(postVC, animated: true)
