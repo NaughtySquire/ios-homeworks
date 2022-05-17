@@ -159,7 +159,7 @@ class LogInViewController: UIViewController {
             logInButton.topAnchor.constraint(equalTo: textFieldsContainerView.bottomAnchor, constant: 16),
             logInButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
-            logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            logInButton.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor)
         ])
     }
 
