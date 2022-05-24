@@ -67,6 +67,7 @@ class ProfileHeaderView: UIView {
         addSubview(fullnameLabel)
         addSubview(profileImage)
         addSubview(setStatusButton)
+        backgroundColor = .systemGray6
         addConstraints()
     }
 

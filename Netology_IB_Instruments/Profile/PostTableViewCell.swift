@@ -37,7 +37,7 @@ class PostTableViewCell: UITableViewCell {
     private lazy var postImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "info")
-//        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
 
@@ -53,7 +53,7 @@ class PostTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .systemGray
         label.numberOfLines = 0
-        label.text = "a lot of text "
+        label.text = "a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text a lot of text "
         return label
     }()
 
@@ -107,7 +107,7 @@ class PostTableViewCell: UITableViewCell {
             contentWhiteView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             contentWhiteView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
 
-            headerLabel.leftAnchor.constraint(equalTo: contentWhiteView.leftAnchor),
+            headerLabel.leftAnchor.constraint(equalTo: contentWhiteView.leftAnchor, constant: 16),
             headerLabel.topAnchor.constraint(equalTo: contentWhiteView.topAnchor),
             headerLabel.rightAnchor.constraint(equalTo: contentWhiteView.rightAnchor),
 

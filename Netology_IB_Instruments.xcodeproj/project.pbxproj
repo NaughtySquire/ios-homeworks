@@ -68,6 +68,7 @@
 		794D507328183BFA00B1A28E /* Netology_IB_Instruments */ = {
 			isa = PBXGroup;
 			children = (
+				79ECD41D28379F70003A2F68 /* Extensions */,
 				7993210828246FEB0043CEA7 /* Feed */,
 				7985A920281BE2FA0043F288 /* Profile */,
 				794D507428183BFA00B1A28E /* AppDelegate.swift */,
@@ -85,7 +86,6 @@
 				79C53EEC281AB3E500E56961 /* ProfileViewController.swift */,
 				7985A921281BE3350043F288 /* ProfileHeaderView.swift */,
 				798C615128367239009EAF50 /* PostTableViewCell.swift */,
-				798C61532836AEF8009EAF50 /* UIView+extension.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -99,6 +99,14 @@
 				79C53EEA281AB36800E56961 /* FeedViewController.swift */,
 			);
 			path = Feed;
+			sourceTree = "<group>";
+		};
+		79ECD41D28379F70003A2F68 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				798C61532836AEF8009EAF50 /* UIView+extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
