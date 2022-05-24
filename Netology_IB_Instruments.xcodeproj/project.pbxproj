@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79372D85282D74450082DAB1 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79372D84282D74450082DAB1 /* LogInViewController.swift */; };
 		79398E6F281ABE4C00E2648C /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79398E6E281ABE4C00E2648C /* TabBarItem.swift */; };
 		79398E71281AC84700E2648C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79398E70281AC84700E2648C /* Post.swift */; };
 		79398E73281AD24600E2648C /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79398E72281AD24600E2648C /* InfoViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		79372D84282D74450082DAB1 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		79398E6E281ABE4C00E2648C /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		79398E70281AC84700E2648C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		79398E72281AD24600E2648C /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			children = (
 				79C53EEC281AB3E500E56961 /* ProfileViewController.swift */,
 				7985A921281BE3350043F288 /* ProfileHeaderView.swift */,
+				79372D84282D74450082DAB1 /* LogInViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -209,10 +212,12 @@
 				798C61542836AEF8009EAF50 /* UIView+extension.swift in Sources */,
 				79C53EF1281ABB5600E56961 /* PostViewController.swift in Sources */,
 				794D507528183BFA00B1A28E /* AppDelegate.swift in Sources */,
+				79372D85282D74450082DAB1 /* LogInViewController.swift in Sources */,
 				79C53EED281AB3E500E56961 /* ProfileViewController.swift in Sources */,
 				79398E73281AD24600E2648C /* InfoViewController.swift in Sources */,
 				79398E71281AC84700E2648C /* Post.swift in Sources */,
 				79398E6F281ABE4C00E2648C /* TabBarItem.swift in Sources */,
+				79AB61002832A629007F942F /* PostTableViewCell.swift in Sources */,
 				79C53EEB281AB36800E56961 /* FeedViewController.swift in Sources */,
 				7985A922281BE3350043F288 /* ProfileHeaderView.swift in Sources */,
 				798C615228367239009EAF50 /* PostTableViewCell.swift in Sources */,
