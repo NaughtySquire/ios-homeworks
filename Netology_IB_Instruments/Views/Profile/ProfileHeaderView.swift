@@ -67,6 +67,7 @@ class ProfileHeaderView: UIView {
         addSubview(fullnameLabel)
         addSubview(profileImage)
         addSubview(setStatusButton)
+        backgroundColor = .systemGray6
         addConstraints()
     }
 
@@ -94,7 +95,7 @@ class ProfileHeaderView: UIView {
         statusTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
 
-            setStatusButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            setStatusButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10),
             setStatusButton.rightAnchor.constraint(equalTo: self.rightAnchor),
             setStatusButton.leftAnchor.constraint(equalTo: self.leftAnchor),
             setStatusButton.heightAnchor.constraint(equalToConstant: 50),

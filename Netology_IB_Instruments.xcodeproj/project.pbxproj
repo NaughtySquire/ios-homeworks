@@ -15,7 +15,8 @@
 		794D507E28183BFB00B1A28E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 794D507D28183BFB00B1A28E /* Assets.xcassets */; };
 		794D508128183BFB00B1A28E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 794D507F28183BFB00B1A28E /* LaunchScreen.storyboard */; };
 		7985A922281BE3350043F288 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985A921281BE3350043F288 /* ProfileHeaderView.swift */; };
-		79AB61002832A629007F942F /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AB60FF2832A629007F942F /* PostTableViewCell.swift */; };
+		798C615228367239009EAF50 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C615128367239009EAF50 /* PostTableViewCell.swift */; };
+		798C61542836AEF8009EAF50 /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C61532836AEF8009EAF50 /* UIView+extension.swift */; };
 		79C53EEB281AB36800E56961 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C53EEA281AB36800E56961 /* FeedViewController.swift */; };
 		79C53EED281AB3E500E56961 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C53EEC281AB3E500E56961 /* ProfileViewController.swift */; };
 		79C53EF1281ABB5600E56961 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C53EF0281ABB5600E56961 /* PostViewController.swift */; };
@@ -32,7 +33,8 @@
 		794D508028183BFB00B1A28E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		794D508228183BFB00B1A28E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7985A921281BE3350043F288 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
-		79AB60FF2832A629007F942F /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		798C615128367239009EAF50 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		798C61532836AEF8009EAF50 /* UIView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
 		79C53EEA281AB36800E56961 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		79C53EEC281AB3E500E56961 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		79C53EF0281ABB5600E56961 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +51,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		791A9523283CD3C6003FB6B4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				79398E70281AC84700E2648C /* Post.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		791A9524283CD3F6003FB6B4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				791A9525283CD4C3003FB6B4 /* Post */,
+				7993210828246FEB0043CEA7 /* Feed */,
+				7985A920281BE2FA0043F288 /* Profile */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		791A9525283CD4C3003FB6B4 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				79C53EF0281ABB5600E56961 /* PostViewController.swift */,
+				798C615128367239009EAF50 /* PostTableViewCell.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
 		794D506828183BFA00B1A28E = {
 			isa = PBXGroup;
 			children = (
@@ -68,8 +97,9 @@
 		794D507328183BFA00B1A28E /* Netology_IB_Instruments */ = {
 			isa = PBXGroup;
 			children = (
-				79AB60FB2832A291007F942F /* Models */,
-				79AB60FA2832A276007F942F /* Views */,
+				791A9524283CD3F6003FB6B4 /* Views */,
+				791A9523283CD3C6003FB6B4 /* Models */,
+				79ECD41D28379F70003A2F68 /* Extensions */,
 				794D507428183BFA00B1A28E /* AppDelegate.swift */,
 				79398E6E281ABE4C00E2648C /* TabBarItem.swift */,
 				794D507D28183BFB00B1A28E /* Assets.xcassets */,
@@ -98,31 +128,12 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
-		79AB60FA2832A276007F942F /* Views */ = {
+		79ECD41D28379F70003A2F68 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				79AB60FE2832A47A007F942F /* Post */,
-				7993210828246FEB0043CEA7 /* Feed */,
-				7985A920281BE2FA0043F288 /* Profile */,
+				798C61532836AEF8009EAF50 /* UIView+extension.swift */,
 			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		79AB60FB2832A291007F942F /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				79398E70281AC84700E2648C /* Post.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		79AB60FE2832A47A007F942F /* Post */ = {
-			isa = PBXGroup;
-			children = (
-				79C53EF0281ABB5600E56961 /* PostViewController.swift */,
-				79AB60FF2832A629007F942F /* PostTableViewCell.swift */,
-			);
-			path = Post;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				798C61542836AEF8009EAF50 /* UIView+extension.swift in Sources */,
 				79C53EF1281ABB5600E56961 /* PostViewController.swift in Sources */,
 				794D507528183BFA00B1A28E /* AppDelegate.swift in Sources */,
 				79372D85282D74450082DAB1 /* LogInViewController.swift in Sources */,
@@ -208,6 +220,7 @@
 				79AB61002832A629007F942F /* PostTableViewCell.swift in Sources */,
 				79C53EEB281AB36800E56961 /* FeedViewController.swift in Sources */,
 				7985A922281BE3350043F288 /* ProfileHeaderView.swift in Sources */,
+				798C615228367239009EAF50 /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
