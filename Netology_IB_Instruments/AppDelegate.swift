@@ -13,8 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        window = UIWindow(frame: UIScreen.main.bounds)
-
         let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
         tabBarAppearance.configureWithDefaultBackground()
         UITabBar.appearance().standardAppearance = tabBarAppearance
@@ -25,12 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().standardAppearance = navBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
 
-        let feedVC = TabBarItem(FeedViewController(), "Feed", "newspaper.circle.fill")
-        let profileVC = TabBarItem(LogInViewController(), "Profile", "person.crop.circle.fill")
-        let rootVC = UITabBarController()
-        rootVC.viewControllers = [profileVC, feedVC]
-        rootVC.tabBar.backgroundColor = .systemBackground
-        self.window?.rootViewController = rootVC
+        window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = UINavigationController(rootViewController: LogInViewController())
         self.window?.makeKeyAndVisible()
         return true
     }
