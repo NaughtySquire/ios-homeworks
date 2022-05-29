@@ -8,6 +8,7 @@
 import UIKit
 
 class LogInViewController: UIViewController {
+    // MARK: - views
     private lazy var contentView: UIView = {
         let view = UIView()
         [logoImageView, textFieldsContainerView, logInButton].forEach(){view.addSubview($0)}
@@ -19,7 +20,7 @@ class LogInViewController: UIViewController {
         scrollView.addSubview(contentView)
         return scrollView
     }()
-//
+
     private lazy var logoImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "logo"))
         imageView.layer.masksToBounds = true
@@ -62,15 +63,24 @@ class LogInViewController: UIViewController {
     }()
 
     private lazy var logInButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(configuration: .filled())
         button.setTitle("LogIn", for: .normal)
         button.layer.cornerRadius = 10
-        button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(goToProfile), for: .touchUpInside)
+        button.configurationUpdateHandler = { clousureButton in
+            switch clousureButton.state{
+            case .normal:
+                clousureButton.configuration?.baseBackgroundColor = UIColor(patternImage: UIImage(named: "blue_pixel")!).withAlphaComponent(1)
+            default:
+                clousureButton.configuration?.baseBackgroundColor = UIColor(patternImage: UIImage(named: "blue_pixel")!).withAlphaComponent(0.8)
+
+            }
+        }
         return button
     }()
 
+    // MARK: - did Load
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -78,11 +88,15 @@ class LogInViewController: UIViewController {
         view.addSubview(scrollView)
         addConstraints()
     }
-
+    // MARK: functions
     @objc
     func goToProfile(){
-        let profileVC = ProfileViewController()
-        navigationController?.pushViewController(profileVC, animated: true)
+        let feedVC = TabBarItem(FeedViewController(), "Feed", "newspaper.circle.fill")
+        let profileVC = TabBarItem(ProfileViewController(), "Profile", "person.crop.circle.fill")
+        let rootVC = UITabBarController()
+        rootVC.viewControllers = [profileVC, feedVC]
+        rootVC.tabBar.backgroundColor = .systemBackground
+        navigationController?.pushViewController(rootVC, animated: true)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -112,6 +126,7 @@ class LogInViewController: UIViewController {
         scrollView.verticalScrollIndicatorInsets = .zero
     }
 
+    // MARK: constraints
     func addConstraints(){
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         contentView.translatesAutoresizingMaskIntoConstraints = false
@@ -164,7 +179,7 @@ class LogInViewController: UIViewController {
     }
 
 }
-
+// MARK: - extensions
 extension LogInViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
