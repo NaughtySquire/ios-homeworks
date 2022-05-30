@@ -9,11 +9,11 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     private var statusText = "Сделал дело - дело сделано."
-    private lazy var profileImage: UIImageView = {
+    lazy var profileImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "wolk")
         image.layer.masksToBounds = true
-        image.layer.cornerRadius = 68
+        image.layer.cornerRadius = 64
         image.layer.borderColor = UIColor.white.cgColor
         image.backgroundColor = .black
         image.layer.borderWidth = 3
@@ -27,7 +27,7 @@ class ProfileHeaderView: UIView {
         label.text = "Мудрый волк"
         return label
     }()
-    private lazy var statusLabel: UILabel = {
+    lazy var statusLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = .gray
@@ -67,6 +67,7 @@ class ProfileHeaderView: UIView {
         addSubview(fullnameLabel)
         addSubview(profileImage)
         addSubview(setStatusButton)
+        bringSubviewToFront(profileImage)
         backgroundColor = .systemGray6
         addConstraints()
     }
