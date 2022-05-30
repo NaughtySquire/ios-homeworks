@@ -17,6 +17,7 @@ class ProfileHeaderView: UIView {
         image.layer.borderColor = UIColor.white.cgColor
         image.backgroundColor = .black
         image.layer.borderWidth = 3
+        image.isUserInteractionEnabled = true
         return image
     }()
 
@@ -27,11 +28,12 @@ class ProfileHeaderView: UIView {
         label.text = "Мудрый волк"
         return label
     }()
-    lazy var statusLabel: UILabel = {
+    private lazy var statusLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = .gray
         label.text = statusText
+        label.isUserInteractionEnabled = true
         return label
     }()
     private lazy var statusTextField: UITextField = {

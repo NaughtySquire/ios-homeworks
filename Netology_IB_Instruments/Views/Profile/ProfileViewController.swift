@@ -36,31 +36,43 @@ class ProfileViewController: UIViewController {
         return table
     }()
 
-//    private lazy var blackView: UIView = {
-//        let view = UIView()
-//        view.backgroundColor = .black
-//        view.alpha = 0
-////        view.addSubview(blackViewProfileImage)
-//        return view
-//    }()
+    private lazy var blackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.7)
+        view.alpha = 0
+        [blackViewProfileImage, blackViewCross].forEach{
+            view.addSubview($0)
+        }
+        return view
+    }()
 
-//    private lazy var blackViewProfileImage: UIImageView = {
-//        let image = UIImageView(image: UIImage(named: "wolk"))
-//        image.layer.masksToBounds = true
-//        image.layer.cornerRadius = 64
-//        image.layer.borderColor = UIColor.white.cgColor
-//        image.backgroundColor = .black
-//        image.layer.borderWidth = 3
-//        image.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-//        return image
-//    }()
+    private lazy var blackViewProfileImage: UIImageView = {
+        let image = UIImageView(image: UIImage(named: "wolk"))
+        image.layer.masksToBounds = true
+        image.layer.cornerRadius = 64
+        image.layer.borderColor = UIColor.white.cgColor
+        image.backgroundColor = .black
+        image.layer.borderWidth = 3
+        image.isUserInteractionEnabled = true
+        return image
+    }()
+
+    private lazy var blackViewCross: UILabel = {
+        let label = UILabel()
+        label.text = "X"
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.isUserInteractionEnabled = true
+        label.alpha = 0
+        return label
+    }()
 
     //MARK: - did load
     override func viewDidLoad() {
         super.viewDidLoad()
         profileHeader.frame = CGRect(x: 0, y: 0, width: view.safeAreaLayoutGuide.layoutFrame.width, height: 220)
         view.backgroundColor = .systemGray6
-        [mainTable].forEach{
+        [mainTable, blackView].forEach{
             view.addSubview($0)
         }
         addConstraints()
@@ -75,36 +87,54 @@ class ProfileViewController: UIViewController {
     func setupGesture(){
         profileHeader.profileImage.addGestureRecognizer(
             UITapGestureRecognizer(target: self, action: #selector(avatarTapAction)))
-//        blackView.addGestureRecognizer(
-//            UITapGestureRecognizer(target: self, action: #selector(blackViewTapAction)))
-    }
-
-    func animate(){
-
+        blackViewCross.addGestureRecognizer(
+            UITapGestureRecognizer(target: self, action: #selector(blackViewCrossTapAction)))
+        blackView.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: #selector(changeAvatarCornerRadius(_ : ))))
     }
 
     @objc
     func avatarTapAction(){
+        let scalilgFactor = self.mainTable.bounds.width / self.blackViewProfileImage.bounds.width
+        UIView.animate(withDuration: 0.5, animations: {
+            self.blackView.alpha = 1
+            self.blackViewProfileImage.transform = CGAffineTransform(
+                translationX: self.mainTable.center.x - self.profileHeader.profileImage.bounds.width / 2,
+                y: self.mainTable.center.y - self.profileHeader.profileImage.frame.height).scaledBy(x: scalilgFactor, y: scalilgFactor)
 
-        UIView.animate(withDuration: 2, animations: {
-            self.profileHeader.profileImage.alpha = 0
-
-            self.profileHeader.profileImage.transform = CGAffineTransform(
-                translationX: self.view.center.x - self.profileHeader.profileImage.bounds.width / 2,
-                y: (self.view.center.y - self.profileHeader.profileImage.bounds.height))
+        }, completion: {_ in
+            UIView.animate(withDuration: 0.3){
+                self.blackViewCross.alpha = 1
+            }
         })
     }
 
     @objc
-    func blackViewTapAction(){
-        UIView.animate(withDuration: 2){
-                self.profileHeader.profileImage.transform = .identity
+    func blackViewCrossTapAction(){
+        UIView.animate(withDuration: 0.3, animations: {
+            self.blackViewCross.alpha = 0
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.5) {
+            self.blackView.alpha = 0
+            self.blackViewProfileImage.transform = .identity
+            }
+        })
+    }
+
+    @objc
+    func changeAvatarCornerRadius(_ gesture: UIPinchGestureRecognizer){
+        if gesture.state == .changed{
+            let scale = min(gesture.scale - 0.5, 1)
+            print(scale)
+            let cornerRadius = min((1 - scale) * 64, 64)
+
+            profileHeader.profileImage.layer.cornerRadius = cornerRadius
+            blackViewProfileImage.layer.cornerRadius = cornerRadius
         }
     }
 
     //MARK: - constraints
     func addConstraints(){
-        [mainTable].forEach{
+        [mainTable, blackView, blackViewProfileImage, blackViewCross].forEach{
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         NSLayoutConstraint.activate([
@@ -113,15 +143,18 @@ class ProfileViewController: UIViewController {
             mainTable.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             mainTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
 
-//            blackView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-//            blackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            blackView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-//            blackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            blackView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            blackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            blackView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            blackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
 
-//            blackViewProfileImage.widthAnchor.constraint(equalToConstant: 128),
-//            blackViewProfileImage.heightAnchor.constraint(equalToConstant: 128),
-//            blackViewProfileImage.leftAnchor.constraint(equalTo: blackView.leftAnchor),
-//            blackViewProfileImage.topAnchor.constraint(equalTo: blackView.topAnchor, constant: 16)
+            blackViewProfileImage.topAnchor.constraint(equalTo: profileHeader.topAnchor, constant: 16),
+            blackViewProfileImage.leftAnchor.constraint(equalTo: profileHeader.leftAnchor),
+            blackViewProfileImage.heightAnchor.constraint(equalToConstant: 128),
+            blackViewProfileImage.widthAnchor.constraint(equalTo: blackViewProfileImage.heightAnchor),
+
+            blackViewCross.topAnchor.constraint(equalTo: blackView.topAnchor, constant: 10),
+            blackViewCross.rightAnchor.constraint(equalTo: blackView.rightAnchor, constant: -10)
 
         ])
         
