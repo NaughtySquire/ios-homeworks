@@ -9,13 +9,8 @@ import UIKit
 
 class PostTableViewCell: UITableViewCell {
 
-    var post: Post = Post(title: "Мемы с волками",
-                                  author: "“Постироничные мемы с волками”",
-                                  description: "Мемы с волками и цитатами иронизируют над классическими “глубокомысленными” картинками. Обычно цитату переделывают до абсурда или вообще заменяют другой мемной фразой, не относящейся к животным.",
-                                  imageName: "Цитата волка",
-                                  likes: 217,
-                                  views: 314)
-
+    var post: Post
+    
     // MARK: - views
 
     private lazy var contentWhiteView: UIView = {
