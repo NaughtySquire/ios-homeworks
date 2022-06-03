@@ -91,8 +91,8 @@ class LogInViewController: UIViewController {
     // MARK: functions
     @objc
     func goToProfile(){
-        let feedVC = TabBarItem(FeedViewController(), "Feed", "newspaper.circle.fill")
-        let profileVC = TabBarItem(ProfileViewController(), "Profile", "person.crop.circle.fill")
+        let feedVC = UINavigationController(rootViewController: FeedViewController(), tabBarTitle: "Feed", tabBarystemImageName: "newspaper.circle.fill")
+        let profileVC = UINavigationController(rootViewController: ProfileViewController(), tabBarTitle: "Profile", tabBarystemImageName: "person.crop.circle.fill")
         let rootVC = UITabBarController()
         rootVC.viewControllers = [profileVC, feedVC]
         rootVC.tabBar.backgroundColor = .systemBackground
