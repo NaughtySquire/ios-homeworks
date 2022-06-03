@@ -47,7 +47,7 @@ class ProfileViewController: UIViewController {
     }()
 
     private lazy var blackViewProfileImage: UIImageView = {
-        let image = UIImageView(image: UIImage(named: "wolk"))
+        let image = UIImageView(image: profileHeader.profileImage.image)
         image.layer.masksToBounds = true
         image.layer.cornerRadius = 64
         image.layer.borderColor = UIColor.white.cgColor
