@@ -48,7 +48,7 @@ class PhotosViewController: UIViewController {
 // MARK: - extensions
 
 extension PhotosViewController: UICollectionViewDelegate{
-    
+
 }
 
 extension PhotosViewController: UICollectionViewDataSource{

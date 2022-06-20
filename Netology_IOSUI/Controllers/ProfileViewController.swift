@@ -13,7 +13,8 @@ class ProfileViewController: UIViewController {
     // key is a number of section that contains values
     private let cells: [Int: [UITableViewCell]] = [
         0 : [
-                PhotosTableViewCell()        ],
+                PhotosTableViewCell()
+        ],
         1 : [
             PostTableViewCell(style: .default, reuseIdentifier: PostTableViewCell.identifier, post: posts[0]),
             PostTableViewCell(style: .default, reuseIdentifier: PostTableViewCell.identifier, post: posts[1]),
@@ -124,9 +125,7 @@ class ProfileViewController: UIViewController {
     func changeAvatarCornerRadius(_ gesture: UIPinchGestureRecognizer){
         if gesture.state == .changed{
             let scale = min(gesture.scale - 0.5, 1)
-            print(scale)
             let cornerRadius = min((1 - scale) * 64, 64)
-
             profileHeader.profileImage.layer.cornerRadius = cornerRadius
             blackViewProfileImage.layer.cornerRadius = cornerRadius
         }
