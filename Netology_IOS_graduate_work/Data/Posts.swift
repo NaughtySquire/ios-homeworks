@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import StorageService
 
 let posts = [
     Post(title: "Мемы с волками",

@@ -72,10 +72,15 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         profileHeader.frame = CGRect(x: 0, y: 0, width: view.safeAreaLayoutGuide.layoutFrame.width, height: 220)
-        view.backgroundColor = .systemGray6
+//        view.backgroundColor = .systemGray6
         [mainTable, blackView].forEach{
             view.addSubview($0)
         }
+        #if DEBUG
+             view.backgroundColor = .red
+        #else
+            view.backgroundColor = .green
+        #endif
         addConstraints()
         setupGesture()
     }

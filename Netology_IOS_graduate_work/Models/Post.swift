@@ -6,11 +6,19 @@
 //
 
 import Foundation
-struct Post{
-    var title: String = ""
-    var author: String = ""
-    var description: String = ""
-    var imageName: String = ""
-    var likes: Int = 0
-    var views: Int = 0
+public struct Post{
+    public var title: String
+    public var author: String
+    public var description: String
+    public var imageName: String
+    public var likes: Int
+    public var views: Int
+    public init(title: String = "", author: String = "", description: String = "", imageName: String = "", likes: Int = 0, views: Int = 0) {
+        self.title = title
+        self.author = author
+        self.description = description
+        self.imageName = imageName
+        self.likes = likes
+        self.views = views
+    }
 }

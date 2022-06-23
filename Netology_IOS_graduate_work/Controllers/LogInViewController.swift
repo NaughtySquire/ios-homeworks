@@ -63,19 +63,28 @@ class LogInViewController: UIViewController {
     }()
 
     private lazy var logInButton: UIButton = {
-        let button = UIButton(configuration: .filled())
+        let button: UIButton
+        if #available(iOS 15.0, *) {
+            button = UIButton(configuration: .filled())
+        } else {
+            button = UIButton()
+        }
         button.setTitle("LogIn", for: .normal)
         button.layer.cornerRadius = 10
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(goToProfile), for: .touchUpInside)
-        button.configurationUpdateHandler = { clousureButton in
-            switch clousureButton.state{
-            case .normal:
-                clousureButton.configuration?.baseBackgroundColor = UIColor(patternImage: UIImage(named: "blue_pixel")!).withAlphaComponent(1)
-            default:
-                clousureButton.configuration?.baseBackgroundColor = UIColor(patternImage: UIImage(named: "blue_pixel")!).withAlphaComponent(0.8)
+        if #available(iOS 15.0, *) {
+            button.configurationUpdateHandler = { clousureButton in
+                switch clousureButton.state{
+                case .normal:
+                    clousureButton.configuration?.baseBackgroundColor = UIColor(patternImage: UIImage(named: "blue_pixel")!).withAlphaComponent(1)
+                default:
+                    clousureButton.configuration?.baseBackgroundColor = UIColor(patternImage: UIImage(named: "blue_pixel")!).withAlphaComponent(0.8)
 
+                }
             }
+        } else {
+            // Fallback on earlier versions
         }
         return button
     }()
