@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileHeaderView: UIView {
     private var statusText = "Сделал дело - дело сделано."
@@ -69,7 +70,6 @@ class ProfileHeaderView: UIView {
         addSubview(fullnameLabel)
         addSubview(profileImage)
         addSubview(setStatusButton)
-        bringSubviewToFront(profileImage)
         backgroundColor = .systemGray6
         addConstraints()
     }
@@ -91,37 +91,39 @@ class ProfileHeaderView: UIView {
     }
 
     func addConstraints(){
-        setStatusButton.translatesAutoresizingMaskIntoConstraints = false
-        profileImage.translatesAutoresizingMaskIntoConstraints = false
-        fullnameLabel.translatesAutoresizingMaskIntoConstraints = false
-        statusLabel.translatesAutoresizingMaskIntoConstraints = false
-        statusTextField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
+        setStatusButton.snp.makeConstraints(){make in
+            make.left.right.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().inset(10)
+            make.height.equalTo(50)
+        }
 
-            setStatusButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            setStatusButton.rightAnchor.constraint(equalTo: self.rightAnchor),
-            setStatusButton.leftAnchor.constraint(equalTo: self.leftAnchor),
-            setStatusButton.heightAnchor.constraint(equalToConstant: 50),
+        profileImage.snp.makeConstraints(){make in
+            make.left.equalToSuperview().inset(16)
+            make.top.equalToSuperview().inset(16)
+            make.bottom.equalTo(setStatusButton.snp_topMargin).inset(-16)
+            make.width.equalTo(profileImage.snp.height)
+        }
 
-            profileImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            profileImage.bottomAnchor.constraint(lessThanOrEqualTo: setStatusButton.topAnchor, constant: -16),
-            profileImage.leftAnchor.constraint(equalTo: self.leftAnchor),
-            profileImage.widthAnchor.constraint(equalTo: profileImage.heightAnchor),
+        fullnameLabel.snp.makeConstraints(){make in
+            make.left.equalTo(profileImage.snp_rightMargin).inset(-16)
+            make.top.equalToSuperview().inset(27)
+            make.right.equalToSuperview()
+        }
 
-            fullnameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
-            fullnameLabel.rightAnchor.constraint(equalTo: self.rightAnchor),
-            fullnameLabel.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 16),
+        statusTextField.snp.makeConstraints(){make in
+            make.left.equalTo(profileImage.snp_rightMargin).inset(-16)
+            make.right.equalToSuperview().inset(16)
+            make.bottom.equalTo(setStatusButton.snp_topMargin).inset(-16)
+            make.height.equalTo(40)
+        }
 
-            statusLabel.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -16),
-            statusLabel.rightAnchor.constraint(equalTo: self.rightAnchor),
-            statusLabel.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 16),
 
-            statusTextField.heightAnchor.constraint(equalToConstant: 40),
-            statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -16),
-            statusTextField.rightAnchor.constraint(equalTo: self.rightAnchor),
-            statusTextField.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 16)
-            
-        ])
+        statusLabel.snp.makeConstraints(){make in
+            make.left.equalTo(profileImage.snp_rightMargin).inset(-16)
+            make.right.equalToSuperview().inset(16)
+            make.bottom.equalTo(statusTextField.snp_topMargin).inset(-16)
+        }
+
     }
 
 }

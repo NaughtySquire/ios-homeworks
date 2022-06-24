@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
 
     var post: Post
-    
+    let imageProcessor = ImageProcessor()
     // MARK: - views
 
     private lazy var contentWhiteView: UIView = {
@@ -31,8 +32,12 @@ class PostTableViewCell: UITableViewCell {
 
     private lazy var postImageView: UIImageView = {
         let imageView = UIImageView()
+        imageProcessor.processImage(
+            sourceImage: UIImage(named: post.imageName)!,
+            filter: ColorFilter.allCases.randomElement()!){ image in
+            imageView.image = image
+        }
         imageView.backgroundColor = .black
-        imageView.image = UIImage(named: post.imageName)
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()

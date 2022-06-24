@@ -11,6 +11,7 @@
 		79372D85282D74450082DAB1 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79372D84282D74450082DAB1 /* LogInViewController.swift */; };
 		79398E71281AC84700E2648C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79398E70281AC84700E2648C /* Post.swift */; };
 		79398E73281AD24600E2648C /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79398E72281AD24600E2648C /* InfoViewController.swift */; };
+		793D72B1286645620011BD59 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 793D72B0286645620011BD59 /* iOSIntPackage */; };
 		794D507528183BFA00B1A28E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794D507428183BFA00B1A28E /* AppDelegate.swift */; };
 		794D507E28183BFB00B1A28E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 794D507D28183BFB00B1A28E /* Assets.xcassets */; };
 		794D508128183BFB00B1A28E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 794D507F28183BFB00B1A28E /* LaunchScreen.storyboard */; };
@@ -24,9 +25,12 @@
 		79C53EF1281ABB5600E56961 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C53EF0281ABB5600E56961 /* PostViewController.swift */; };
 		79C94A722842520D00925AAA /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C94A712842520D00925AAA /* PhotosViewController.swift */; };
 		79C94A7628428CD300925AAA /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C94A7528428CD300925AAA /* PhotosCollectionViewCell.swift */; };
+		E44935A5891704AB2C6643F5 /* Pods_Netology_IOS_graduate_work.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87BE628D49B5A48EBA5D8F8F /* Pods_Netology_IOS_graduate_work.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		291469F4F54BEE48EBC83193 /* Pods-Netology_IOS_graduate_work.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netology_IOS_graduate_work.debug.xcconfig"; path = "Target Support Files/Pods-Netology_IOS_graduate_work/Pods-Netology_IOS_graduate_work.debug.xcconfig"; sourceTree = "<group>"; };
+		3D8115AEE30DBF668A88C72B /* Pods-Netology_IOS_graduate_work.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netology_IOS_graduate_work.release.xcconfig"; path = "Target Support Files/Pods-Netology_IOS_graduate_work/Pods-Netology_IOS_graduate_work.release.xcconfig"; sourceTree = "<group>"; };
 		79003B10284A2B530076EBAF /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		79372D84282D74450082DAB1 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		79398E70281AC84700E2648C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -46,6 +50,7 @@
 		79C53EF0281ABB5600E56961 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		79C94A712842520D00925AAA /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		79C94A7528428CD300925AAA /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		87BE628D49B5A48EBA5D8F8F /* Pods_Netology_IOS_graduate_work.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Netology_IOS_graduate_work.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E44935A5891704AB2C6643F5 /* Pods_Netology_IOS_graduate_work.framework in Frameworks */,
+				793D72B1286645620011BD59 /* iOSIntPackage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +87,8 @@
 			children = (
 				794D507328183BFA00B1A28E /* Netology_IOS_graduate_work */,
 				794D507228183BFA00B1A28E /* Products */,
+				CA9931E2B84617CF3CCC85FF /* Pods */,
+				FC817B21B0B5F7A5881151A0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -148,6 +157,23 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		CA9931E2B84617CF3CCC85FF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				291469F4F54BEE48EBC83193 /* Pods-Netology_IOS_graduate_work.debug.xcconfig */,
+				3D8115AEE30DBF668A88C72B /* Pods-Netology_IOS_graduate_work.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FC817B21B0B5F7A5881151A0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				87BE628D49B5A48EBA5D8F8F /* Pods_Netology_IOS_graduate_work.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -155,15 +181,20 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 794D508528183BFB00B1A28E /* Build configuration list for PBXNativeTarget "Netology_IOS_graduate_work" */;
 			buildPhases = (
+				6898882CA49F050E27D6EB99 /* [CP] Check Pods Manifest.lock */,
 				794D506D28183BFA00B1A28E /* Sources */,
 				794D506E28183BFA00B1A28E /* Frameworks */,
 				794D506F28183BFA00B1A28E /* Resources */,
+				421258C09145C657E936827D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Netology_IOS_graduate_work;
+			packageProductDependencies = (
+				793D72B0286645620011BD59 /* iOSIntPackage */,
+			);
 			productName = "Netology_IB_Instruments'";
 			productReference = 794D507128183BFA00B1A28E /* Netology_IOS_graduate_work.app */;
 			productType = "com.apple.product-type.application";
@@ -195,6 +226,9 @@
 				Base,
 			);
 			mainGroup = 794D506828183BFA00B1A28E;
+			packageReferences = (
+				793D72AF286645620011BD59 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
+			);
 			productRefGroup = 794D507228183BFA00B1A28E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -215,6 +249,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		421258C09145C657E936827D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Netology_IOS_graduate_work/Pods-Netology_IOS_graduate_work-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Netology_IOS_graduate_work/Pods-Netology_IOS_graduate_work-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Netology_IOS_graduate_work/Pods-Netology_IOS_graduate_work-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6898882CA49F050E27D6EB99 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Netology_IOS_graduate_work-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		794D506D28183BFA00B1A28E /* Sources */ = {
@@ -369,6 +445,7 @@
 		};
 		794D508628183BFB00B1A28E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 291469F4F54BEE48EBC83193 /* Pods-Netology_IOS_graduate_work.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -396,6 +473,7 @@
 		};
 		794D508728183BFB00B1A28E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D8115AEE30DBF668A88C72B /* Pods-Netology_IOS_graduate_work.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -443,6 +521,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		793D72AF286645620011BD59 /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TrueMax/iOSIntPackage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		793D72B0286645620011BD59 /* iOSIntPackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 793D72AF286645620011BD59 /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
+			productName = iOSIntPackage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 794D506928183BFA00B1A28E /* Project object */;
 }
