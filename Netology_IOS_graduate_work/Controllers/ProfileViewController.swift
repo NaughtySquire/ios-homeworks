@@ -9,8 +9,10 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    private let userService: UserService
+    
     // MARK: - cells dictionary
-    // key is a number of section that contains values
+    /// key is a number of section that contains values
     private let cells: [Int: [UITableViewCell]] = [
         0 : [
                 PhotosTableViewCell()
@@ -25,7 +27,7 @@ class ProfileViewController: UIViewController {
 
     // MARK: - views
 
-    var profileHeader = ProfileHeaderView()
+    var profileHeader: ProfileHeaderView
 
     private lazy var mainTable: UITableView = {
         let table = UITableView()
@@ -68,7 +70,19 @@ class ProfileViewController: UIViewController {
         return label
     }()
 
-    //MARK: - did load
+    // MARK: - init
+    init(userService: UserService, username: String){
+        self.userService = userService
+        profileHeader = ProfileHeaderView(user: self.userService.getUser(username: username)
+)
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    //MARK: - life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         profileHeader.frame = CGRect(x: 0, y: 0, width: view.safeAreaLayoutGuide.layoutFrame.width, height: 220)

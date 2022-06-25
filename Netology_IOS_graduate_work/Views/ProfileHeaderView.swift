@@ -8,10 +8,11 @@
 import UIKit
 
 class ProfileHeaderView: UIView {
-    private var statusText = "Сделал дело - дело сделано."
+    private var user: User
+
     lazy var profileImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "wolk")
+        image.image = UIImage(named: user.avatarImageName) ?? UIImage(systemName: "person.fill")
         image.layer.masksToBounds = true
         image.layer.cornerRadius = 64
         image.layer.borderColor = UIColor.white.cgColor
@@ -25,14 +26,14 @@ class ProfileHeaderView: UIView {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = .black
-        label.text = "Мудрый волк"
+        label.text = user.fullName
         return label
     }()
     private lazy var statusLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = .gray
-        label.text = statusText
+        label.text = user.statusText
         label.isUserInteractionEnabled = true
         return label
     }()
@@ -62,7 +63,8 @@ class ProfileHeaderView: UIView {
         return button
     }()
 
-    init() {
+    init(user: User) {
+        self.user = user
         super.init(frame: .zero)
         addSubview(statusTextField)
         addSubview(statusLabel)
@@ -80,14 +82,14 @@ class ProfileHeaderView: UIView {
 
     @objc
     func updateStatus(){
-        statusLabel.text = statusText
+        statusLabel.text = user.statusText
         print(statusLabel.text ?? "Статус не установлен")
 
     }
 
     @objc
     func statusTextFieldChangesHandler(_ textField: UITextField){
-        statusText = textField.text ?? statusText
+        user.statusText = textField.text ?? user.statusText
     }
 
     func addConstraints(){
