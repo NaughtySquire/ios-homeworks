@@ -25,7 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = UINavigationController(rootViewController: LogInViewController())
+        let rootVC = LogInViewController()
+        let logInFactory = LogInFactory()
+        rootVC.logInDelegate = logInFactory.createLoInInspector()
+        self.window?.rootViewController = UINavigationController(rootViewController: rootVC)
         self.window?.makeKeyAndVisible()
         return true
     }

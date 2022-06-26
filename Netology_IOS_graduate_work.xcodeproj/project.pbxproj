@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		79003B11284A2B530076EBAF /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79003B10284A2B530076EBAF /* UINavigationController.swift */; };
+		791DFF0C28687D3B00AC469F /* AuthCheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791DFF0B28687D3B00AC469F /* AuthCheckerService.swift */; };
+		791DFF0F2868871F00AC469F /* LogInInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791DFF0E2868871F00AC469F /* LogInInspector.swift */; };
+		791DFF1228688C7800AC469F /* LogInFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791DFF1128688C7800AC469F /* LogInFactory.swift */; };
 		79372D85282D74450082DAB1 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79372D84282D74450082DAB1 /* LogInViewController.swift */; };
 		79398E71281AC84700E2648C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79398E70281AC84700E2648C /* Post.swift */; };
 		79398E73281AD24600E2648C /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79398E72281AD24600E2648C /* InfoViewController.swift */; };
@@ -28,6 +31,9 @@
 
 /* Begin PBXFileReference section */
 		79003B10284A2B530076EBAF /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
+		791DFF0B28687D3B00AC469F /* AuthCheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCheckerService.swift; sourceTree = "<group>"; };
+		791DFF0E2868871F00AC469F /* LogInInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInInspector.swift; sourceTree = "<group>"; };
+		791DFF1128688C7800AC469F /* LogInFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInFactory.swift; sourceTree = "<group>"; };
 		79372D84282D74450082DAB1 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		79398E70281AC84700E2648C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		79398E72281AD24600E2648C /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +81,30 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		791DFF0A28687D0600AC469F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				791DFF0B28687D3B00AC469F /* AuthCheckerService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		791DFF0D286886FF00AC469F /* Inspectors */ = {
+			isa = PBXGroup;
+			children = (
+				791DFF0E2868871F00AC469F /* LogInInspector.swift */,
+			);
+			path = Inspectors;
+			sourceTree = "<group>";
+		};
+		791DFF1028688C5900AC469F /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				791DFF1128688C7800AC469F /* LogInFactory.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
 		794D506828183BFA00B1A28E = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +124,9 @@
 		794D507328183BFA00B1A28E /* Netology_IOS_graduate_work */ = {
 			isa = PBXGroup;
 			children = (
+				791DFF1028688C5900AC469F /* Factories */,
+				791DFF0D286886FF00AC469F /* Inspectors */,
+				791DFF0A28687D0600AC469F /* Services */,
 				799760D12860635C00D68308 /* Cells */,
 				799760D02860632F00D68308 /* Controllers */,
 				7961E84D28420973001C4631 /* Data */,
@@ -232,7 +265,10 @@
 				79398E71281AC84700E2648C /* Post.swift in Sources */,
 				79003B11284A2B530076EBAF /* UINavigationController.swift in Sources */,
 				79C53EEB281AB36800E56961 /* FeedViewController.swift in Sources */,
+				791DFF0C28687D3B00AC469F /* AuthCheckerService.swift in Sources */,
+				791DFF0F2868871F00AC469F /* LogInInspector.swift in Sources */,
 				79C94A7628428CD300925AAA /* PhotosCollectionViewCell.swift in Sources */,
+				791DFF1228688C7800AC469F /* LogInFactory.swift in Sources */,
 				79C94A722842520D00925AAA /* PhotosViewController.swift in Sources */,
 				7985A922281BE3350043F288 /* ProfileHeaderView.swift in Sources */,
 				798C615228367239009EAF50 /* PostTableViewCell.swift in Sources */,

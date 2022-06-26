@@ -7,7 +7,14 @@
 
 import UIKit
 
+protocol LogInViewControllerDelegate {
+    func checkLogIn(login: String, password: String) -> Bool
+}
+
 class LogInViewController: UIViewController {
+
+    var logInDelegate: LogInViewControllerDelegate?
+
     // MARK: - views
     private lazy var contentView: UIView = {
         let view = UIView()
@@ -30,7 +37,7 @@ class LogInViewController: UIViewController {
     private lazy var textFieldsContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray6
-        [logInTextField, passwordTextField].forEach(){view.addSubview($0)}
+        [loginTextField, passwordTextField].forEach(){view.addSubview($0)}
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
         view.layer.borderWidth = 0.5
@@ -38,7 +45,7 @@ class LogInViewController: UIViewController {
         return view
     }()
 
-    private lazy var logInTextField: UITextField = {
+    private lazy var loginTextField: UITextField = {
         let textField = UITextField()
         textField.textColor = .black
         textField.font = UIFont.systemFont(ofSize: 16)
@@ -91,6 +98,9 @@ class LogInViewController: UIViewController {
     // MARK: functions
     @objc
     func goToProfile(){
+        guard logInDelegate!.checkLogIn(login: loginTextField.text!, password: passwordTextField.text!) else{
+            return
+        }
         let feedVC = UINavigationController(rootViewController: FeedViewController(), tabBarTitle: "Feed", tabBarystemImageName: "newspaper.circle.fill")
         let profileVC = UINavigationController(rootViewController: ProfileViewController(), tabBarTitle: "Profile", tabBarystemImageName: "person.crop.circle.fill")
         let rootVC = UITabBarController()
@@ -132,7 +142,7 @@ class LogInViewController: UIViewController {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         textFieldsContainerView.translatesAutoresizingMaskIntoConstraints = false
-        logInTextField.translatesAutoresizingMaskIntoConstraints = false
+        loginTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         logInButton.translatesAutoresizingMaskIntoConstraints = false
 
@@ -160,10 +170,10 @@ class LogInViewController: UIViewController {
             textFieldsContainerView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
             textFieldsContainerView.heightAnchor.constraint(equalToConstant: 100),
 
-            logInTextField.leftAnchor.constraint(equalTo: textFieldsContainerView.leftAnchor),
-            logInTextField.topAnchor.constraint(equalTo: textFieldsContainerView.topAnchor),
-            logInTextField.widthAnchor.constraint(equalTo: textFieldsContainerView.widthAnchor),
-            logInTextField.heightAnchor.constraint(equalTo: textFieldsContainerView.heightAnchor, multiplier: 0.5),
+            loginTextField.leftAnchor.constraint(equalTo: textFieldsContainerView.leftAnchor),
+            loginTextField.topAnchor.constraint(equalTo: textFieldsContainerView.topAnchor),
+            loginTextField.widthAnchor.constraint(equalTo: textFieldsContainerView.widthAnchor),
+            loginTextField.heightAnchor.constraint(equalTo: textFieldsContainerView.heightAnchor, multiplier: 0.5),
 
             passwordTextField.leftAnchor.constraint(equalTo: textFieldsContainerView.leftAnchor),
             passwordTextField.bottomAnchor.constraint(equalTo: textFieldsContainerView.bottomAnchor),
