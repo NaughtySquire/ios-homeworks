@@ -6,9 +6,23 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class PhotosViewController: UIViewController {
-    private let numberOfPhotos = 20
+
+
+    private let imageFacade = ImagePublisherFacade()
+
+    // MARK: - data
+
+    private var currentNumberOfPhotos = 0
+    private let photos: [UIImage] = {
+        var images: [UIImage] = []
+        for i in 0..<20{
+            images.append(UIImage(named: "Photos/\(i)")!)
+        }
+        return images
+    }()
 
     // MARK: - views
 
@@ -23,11 +37,18 @@ class PhotosViewController: UIViewController {
     // MARK: - did load
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageFacade.subscribe(self)
+        imageFacade.addImagesWithTimer(time: 0.5, repeat: 20, userImages: photos)
         view.backgroundColor = .white
         navigationController?.isNavigationBarHidden = false
         view.addSubview(photosCollection)
         addConstraints()
 
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        imageFacade.rechargeImageLibrary()
+        imageFacade.removeSubscription(for: self)
     }
 
     //MARK: - constraints
@@ -53,7 +74,7 @@ extension PhotosViewController: UICollectionViewDelegate{
 
 extension PhotosViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        numberOfPhotos
+        currentNumberOfPhotos
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -79,5 +100,12 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout{
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         sideInset
+    }
+}
+
+extension PhotosViewController: ImageLibrarySubscriber{
+    func receive(images: [UIImage]) {
+        currentNumberOfPhotos += 1
+        photosCollection.reloadData()
     }
 }

@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/romanolegovic/Xcode projects/Netology_IB_Instruments/Netology_IOS_graduate_work.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>

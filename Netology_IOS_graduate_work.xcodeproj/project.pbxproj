@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		79003B11284A2B530076EBAF /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79003B10284A2B530076EBAF /* UINavigationController.swift */; };
+		791DFF15286A0C2C00AC469F /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 791DFF14286A0C2C00AC469F /* iOSIntPackage */; };
 		79372D85282D74450082DAB1 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79372D84282D74450082DAB1 /* LogInViewController.swift */; };
 		79398E71281AC84700E2648C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79398E70281AC84700E2648C /* Post.swift */; };
 		79398E73281AD24600E2648C /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79398E72281AD24600E2648C /* InfoViewController.swift */; };
@@ -53,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				791DFF15286A0C2C00AC469F /* iOSIntPackage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +166,9 @@
 			dependencies = (
 			);
 			name = Netology_IOS_graduate_work;
+			packageProductDependencies = (
+				791DFF14286A0C2C00AC469F /* iOSIntPackage */,
+			);
 			productName = "Netology_IB_Instruments'";
 			productReference = 794D507128183BFA00B1A28E /* Netology_IOS_graduate_work.app */;
 			productType = "com.apple.product-type.application";
@@ -195,6 +200,9 @@
 				Base,
 			);
 			mainGroup = 794D506828183BFA00B1A28E;
+			packageReferences = (
+				791DFF13286A0C2C00AC469F /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
+			);
 			productRefGroup = 794D507228183BFA00B1A28E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -443,6 +451,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		791DFF13286A0C2C00AC469F /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TrueMax/iOSIntPackage.git";
+			requirement = {
+				branch = imagepublisher;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		791DFF14286A0C2C00AC469F /* iOSIntPackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 791DFF13286A0C2C00AC469F /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
+			productName = iOSIntPackage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 794D506928183BFA00B1A28E /* Project object */;
 }
