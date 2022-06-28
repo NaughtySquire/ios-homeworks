@@ -8,6 +8,9 @@
 import UIKit
 
 class LogInViewController: UIViewController {
+
+    let buttonFactory = ButtonFactory()
+
     // MARK: - views
     private lazy var contentView: UIView = {
         let view = UIView()
@@ -62,23 +65,11 @@ class LogInViewController: UIViewController {
         return textField
     }()
 
-    private lazy var logInButton: UIButton = {
-        let button = UIButton(configuration: .filled())
-        button.setTitle("LogIn", for: .normal)
-        button.layer.cornerRadius = 10
-        button.layer.masksToBounds = true
-        button.addTarget(self, action: #selector(goToProfile), for: .touchUpInside)
-        button.configurationUpdateHandler = { clousureButton in
-            switch clousureButton.state{
-            case .normal:
-                clousureButton.configuration?.baseBackgroundColor = UIColor(patternImage: UIImage(named: "blue_pixel")!).withAlphaComponent(1)
-            default:
-                clousureButton.configuration?.baseBackgroundColor = UIColor(patternImage: UIImage(named: "blue_pixel")!).withAlphaComponent(0.8)
-
-            }
+    private lazy var logInButton = buttonFactory.createButton(
+        buttonType: .logInButton,
+        buttonTitle: "LogIn"){
+            self.goToProfile()
         }
-        return button
-    }()
 
     // MARK: - did Load
     override func viewDidLoad() {
@@ -91,7 +82,7 @@ class LogInViewController: UIViewController {
     // MARK: functions
     @objc
     func goToProfile(){
-        let feedVC = UINavigationController(rootViewController: FeedViewController(), tabBarTitle: "Feed", tabBarystemImageName: "newspaper.circle.fill")
+        let feedVC = UINavigationController(rootViewController: FeedViewController(userModel: User()), tabBarTitle: "Feed", tabBarystemImageName: "newspaper.circle.fill")
         let profileVC = UINavigationController(rootViewController: ProfileViewController(), tabBarTitle: "Profile", tabBarystemImageName: "person.crop.circle.fill")
         let rootVC = UITabBarController()
         rootVC.viewControllers = [profileVC, feedVC]

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		79003B11284A2B530076EBAF /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79003B10284A2B530076EBAF /* UINavigationController.swift */; };
+		79113666286B5D2C00E3DA64 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79113665286B5D2C00E3DA64 /* CustomButton.swift */; };
+		79113669286B611900E3DA64 /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79113668286B611900E3DA64 /* ButtonFactory.swift */; };
+		7911366B286B6FF400E3DA64 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7911366A286B6FF400E3DA64 /* User.swift */; };
+		7911366D286B7F4E00E3DA64 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7911366C286B7F4E00E3DA64 /* CustomTextField.swift */; };
 		79372D85282D74450082DAB1 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79372D84282D74450082DAB1 /* LogInViewController.swift */; };
 		79398E71281AC84700E2648C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79398E70281AC84700E2648C /* Post.swift */; };
 		79398E73281AD24600E2648C /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79398E72281AD24600E2648C /* InfoViewController.swift */; };
@@ -28,6 +32,10 @@
 
 /* Begin PBXFileReference section */
 		79003B10284A2B530076EBAF /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
+		79113665286B5D2C00E3DA64 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		79113668286B611900E3DA64 /* ButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
+		7911366A286B6FF400E3DA64 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		7911366C286B7F4E00E3DA64 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		79372D84282D74450082DAB1 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		79398E70281AC84700E2648C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		79398E72281AD24600E2648C /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -59,10 +67,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		79113667286B610400E3DA64 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				79113668286B611900E3DA64 /* ButtonFactory.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
 		791A9523283CD3C6003FB6B4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				79398E70281AC84700E2648C /* Post.swift */,
+				7911366A286B6FF400E3DA64 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -71,6 +88,8 @@
 			isa = PBXGroup;
 			children = (
 				7985A921281BE3350043F288 /* ProfileHeaderView.swift */,
+				79113665286B5D2C00E3DA64 /* CustomButton.swift */,
+				7911366C286B7F4E00E3DA64 /* CustomTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -94,6 +113,7 @@
 		794D507328183BFA00B1A28E /* Netology_IOS_graduate_work */ = {
 			isa = PBXGroup;
 			children = (
+				79113667286B610400E3DA64 /* Factories */,
 				799760D12860635C00D68308 /* Cells */,
 				799760D02860632F00D68308 /* Controllers */,
 				7961E84D28420973001C4631 /* Data */,
@@ -225,14 +245,18 @@
 				79C53EF1281ABB5600E56961 /* PostViewController.swift in Sources */,
 				794D507528183BFA00B1A28E /* AppDelegate.swift in Sources */,
 				79372D85282D74450082DAB1 /* LogInViewController.swift in Sources */,
+				79113666286B5D2C00E3DA64 /* CustomButton.swift in Sources */,
+				7911366D286B7F4E00E3DA64 /* CustomTextField.swift in Sources */,
 				7962685D283E1EF700C619AC /* PhotosTableViewCell.swift in Sources */,
 				7961E84F2842099E001C4631 /* Posts.swift in Sources */,
 				79C53EED281AB3E500E56961 /* ProfileViewController.swift in Sources */,
 				79398E73281AD24600E2648C /* InfoViewController.swift in Sources */,
 				79398E71281AC84700E2648C /* Post.swift in Sources */,
 				79003B11284A2B530076EBAF /* UINavigationController.swift in Sources */,
+				79113669286B611900E3DA64 /* ButtonFactory.swift in Sources */,
 				79C53EEB281AB36800E56961 /* FeedViewController.swift in Sources */,
 				79C94A7628428CD300925AAA /* PhotosCollectionViewCell.swift in Sources */,
+				7911366B286B6FF400E3DA64 /* User.swift in Sources */,
 				79C94A722842520D00925AAA /* PhotosViewController.swift in Sources */,
 				7985A922281BE3350043F288 /* ProfileHeaderView.swift in Sources */,
 				798C615228367239009EAF50 /* PostTableViewCell.swift in Sources */,

@@ -8,6 +8,9 @@
 import UIKit
 
 class ProfileHeaderView: UIView {
+
+    private let buttonFactory = ButtonFactory()
+
     private var statusText = "Сделал дело - дело сделано."
     lazy var profileImage: UIImageView = {
         let image = UIImageView()
@@ -47,21 +50,11 @@ class ProfileHeaderView: UIView {
         textField.addTarget(self, action: #selector(statusTextFieldChangesHandler), for: .editingChanged)
         return textField
     }()
-    private lazy var setStatusButton: UIButton = {
-        let button = UIButton()
-        button.setTitleColor( UIColor.white , for: .normal)
-        button.layer.masksToBounds = false
-        button.layer.cornerRadius = 10
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.layer.shadowRadius = 4
-        button.layer.shadowOpacity = 0.7
-        button.backgroundColor = .systemBlue
-        button.setTitle("Set status", for: .normal)
-        button.addTarget(self, action: #selector(updateStatus), for: .touchUpInside)
-        return button
-    }()
-
+    private lazy var setStatusButton = buttonFactory.createButton(
+        buttonType: .defaultButton,
+        buttonTitle: "Set Status"){
+            self.updateStatus()
+        }
     init() {
         super.init(frame: .zero)
         addSubview(statusTextField)
