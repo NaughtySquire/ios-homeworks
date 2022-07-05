@@ -8,7 +8,14 @@
 import UIKit
 
 class LogInViewController: UIViewController {
+
+    // MARK: - properties
+
+    private let moduleFactory = ModuleFactory()
+    private var viewModel: LogInViewModel
+
     // MARK: - views
+
     private lazy var contentView: UIView = {
         let view = UIView()
         [logoImageView, textFieldsContainerView, logInButton].forEach(){view.addSubview($0)}
@@ -30,7 +37,7 @@ class LogInViewController: UIViewController {
     private lazy var textFieldsContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray6
-        [logInTextField, passwordTextField].forEach(){view.addSubview($0)}
+        [usernameTextField, passwordTextField].forEach(){view.addSubview($0)}
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
         view.layer.borderWidth = 0.5
@@ -38,13 +45,14 @@ class LogInViewController: UIViewController {
         return view
     }()
 
-    private lazy var logInTextField: UITextField = {
+    private lazy var usernameTextField: UITextField = {
         let textField = UITextField()
         textField.textColor = .black
         textField.font = UIFont.systemFont(ofSize: 16)
         textField.layer.borderWidth = 0.25
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.placeholder = "Email or phone"
+        textField.text = "wolk"
         textField.autocapitalizationType = .none
         textField.delegate = self
         return textField
@@ -56,6 +64,7 @@ class LogInViewController: UIViewController {
         textField.layer.borderWidth = 0.25
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.placeholder = "Password"
+        textField.text = "Пароль"
         textField.autocapitalizationType = .none
         textField.isSecureTextEntry = true
         textField.delegate = self
@@ -80,23 +89,25 @@ class LogInViewController: UIViewController {
         return button
     }()
 
-    // MARK: - did Load
+    // MARK: - init
+
+    init(viewModel: LogInViewModel){
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+
+    // MARK: - life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationController?.navigationBar.isHidden = true
         view.addSubview(scrollView)
         addConstraints()
-    }
-    // MARK: functions
-    @objc
-    func goToProfile(){
-        let feedVC = UINavigationController(rootViewController: FeedViewController(), tabBarTitle: "Feed", tabBarystemImageName: "newspaper.circle.fill")
-        let profileVC = UINavigationController(rootViewController: ProfileViewController(), tabBarTitle: "Profile", tabBarystemImageName: "person.crop.circle.fill")
-        let rootVC = UITabBarController()
-        rootVC.viewControllers = [profileVC, feedVC]
-        rootVC.tabBar.backgroundColor = .systemBackground
-        navigationController?.pushViewController(rootVC, animated: true)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -111,6 +122,13 @@ class LogInViewController: UIViewController {
         let nc = NotificationCenter.default
         nc.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         nc.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    // MARK: functions
+    @objc
+    func goToProfile(){
+        viewModel.chageState(.logInButtonTapped(username: usernameTextField.text!,
+                                                password: passwordTextField.text!))
     }
 
     @objc
@@ -132,7 +150,7 @@ class LogInViewController: UIViewController {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         textFieldsContainerView.translatesAutoresizingMaskIntoConstraints = false
-        logInTextField.translatesAutoresizingMaskIntoConstraints = false
+        usernameTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         logInButton.translatesAutoresizingMaskIntoConstraints = false
 
@@ -160,10 +178,10 @@ class LogInViewController: UIViewController {
             textFieldsContainerView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
             textFieldsContainerView.heightAnchor.constraint(equalToConstant: 100),
 
-            logInTextField.leftAnchor.constraint(equalTo: textFieldsContainerView.leftAnchor),
-            logInTextField.topAnchor.constraint(equalTo: textFieldsContainerView.topAnchor),
-            logInTextField.widthAnchor.constraint(equalTo: textFieldsContainerView.widthAnchor),
-            logInTextField.heightAnchor.constraint(equalTo: textFieldsContainerView.heightAnchor, multiplier: 0.5),
+            usernameTextField.leftAnchor.constraint(equalTo: textFieldsContainerView.leftAnchor),
+            usernameTextField.topAnchor.constraint(equalTo: textFieldsContainerView.topAnchor),
+            usernameTextField.widthAnchor.constraint(equalTo: textFieldsContainerView.widthAnchor),
+            usernameTextField.heightAnchor.constraint(equalTo: textFieldsContainerView.heightAnchor, multiplier: 0.5),
 
             passwordTextField.leftAnchor.constraint(equalTo: textFieldsContainerView.leftAnchor),
             passwordTextField.bottomAnchor.constraint(equalTo: textFieldsContainerView.bottomAnchor),

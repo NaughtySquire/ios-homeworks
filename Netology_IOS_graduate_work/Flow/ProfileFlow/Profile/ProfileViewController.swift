@@ -7,7 +7,14 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, Coordinated {
+
+    // MARK: - properties
+
+    var coordinator: Coordinator
+    var photosCellDidTap: (() -> ())?
+    var userData: UserData
+
 
     // MARK: - cells dictionary
     // key is a number of section that contains values
@@ -25,7 +32,7 @@ class ProfileViewController: UIViewController {
 
     // MARK: - views
 
-    var profileHeader = ProfileHeaderView()
+    lazy var profileHeader = ProfileHeaderView(userData: userData)
 
     private lazy var mainTable: UITableView = {
         let table = UITableView()
@@ -68,7 +75,19 @@ class ProfileViewController: UIViewController {
         return label
     }()
 
-    //MARK: - did load
+    // MARK: - init
+
+    init(profileCoordinator: ProfileCoordinator, userData: UserData){
+        self.userData = userData
+        coordinator = profileCoordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    //MARK: - life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         profileHeader.frame = CGRect(x: 0, y: 0, width: view.safeAreaLayoutGuide.layoutFrame.width, height: 220)

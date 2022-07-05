@@ -8,10 +8,10 @@
 import UIKit
 
 extension UINavigationController{
-    convenience init(rootViewController: UIViewController, tabBarTitle: String, tabBarystemImageName: String){
+    convenience init(rootViewController: UIViewController, tabBarTitle: String, tabBarSystemImageName: String){
         self.init(rootViewController: rootViewController)
         tabBarItem.title = tabBarTitle
-        tabBarItem.image = UIImage(systemName: tabBarystemImageName)
+        tabBarItem.image = UIImage(systemName: tabBarSystemImageName)
         navigationBar.backgroundColor = .systemBackground
     }
 }
