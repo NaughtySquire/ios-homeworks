@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		79003B11284A2B530076EBAF /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79003B10284A2B530076EBAF /* UINavigationController.swift */; };
-		7927B4512874D97300DD339C /* Coordinated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7927B4502874D97300DD339C /* Coordinated.swift */; };
 		79372D85282D74450082DAB1 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79372D84282D74450082DAB1 /* LogInViewController.swift */; };
 		79398E71281AC84700E2648C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79398E70281AC84700E2648C /* Post.swift */; };
 		79398E73281AD24600E2648C /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79398E72281AD24600E2648C /* InfoViewController.swift */; };
@@ -44,7 +43,6 @@
 
 /* Begin PBXFileReference section */
 		79003B10284A2B530076EBAF /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
-		7927B4502874D97300DD339C /* Coordinated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinated.swift; sourceTree = "<group>"; };
 		79372D84282D74450082DAB1 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		79398E70281AC84700E2648C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		79398E72281AD24600E2648C /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -215,7 +213,6 @@
 		795E1FE02874924200F590CD /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				7927B4502874D97300DD339C /* Coordinated.swift */,
 				795E1FDE2871CEAA00F590CD /* Coordinator.swift */,
 			);
 			path = Protocols;
@@ -356,7 +353,6 @@
 				795E1FEB2874A3B000F590CD /* FeedCoordinator.swift in Sources */,
 				79C53EF1281ABB5600E56961 /* PostViewController.swift in Sources */,
 				794D507528183BFA00B1A28E /* AppDelegate.swift in Sources */,
-				7927B4512874D97300DD339C /* Coordinated.swift in Sources */,
 				79372D85282D74450082DAB1 /* LogInViewController.swift in Sources */,
 				79C141A7286F2FFB00146F90 /* FetchService.swift in Sources */,
 				7962685D283E1EF700C619AC /* PhotosTableViewCell.swift in Sources */,

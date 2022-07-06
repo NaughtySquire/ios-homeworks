@@ -20,6 +20,10 @@ class LogInCoordinator: Coordinator{
     }
 
     func start() {
+        goToLogIn()
+    }
+
+    func goToLogIn(){
         self.rootViewController = UINavigationController(rootViewController: logInFactory.getLogIn(coordinator: self))
     }
 

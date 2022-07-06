@@ -29,14 +29,16 @@ class ModuleFactory: LogInFactory,
     }
     // MARK: - logIn
     func getLogIn(coordinator: LogInCoordinator) -> LogInViewController {
-        let logInViewModel = LogInViewModel(coordinator: coordinator)
+        let logInViewModel = LogInViewModel()
+        logInViewModel.loggedIn = {[weak coordinator] userData, isLoggedIn in
+            coordinator?.onFinish?(userData, isLoggedIn)
+        }
         let vc = LogInViewController(viewModel: logInViewModel)
         return vc
     }
     // MARK: - profile
     func getProfile(coordinator: ProfileCoordinator, userData: UserData) -> ProfileViewController {
-        let vc = ProfileViewController(profileCoordinator: coordinator, userData: userData)
-        vc.coordinator = coordinator
+        let vc = ProfileViewController(userData: userData)
         return vc
     }
 

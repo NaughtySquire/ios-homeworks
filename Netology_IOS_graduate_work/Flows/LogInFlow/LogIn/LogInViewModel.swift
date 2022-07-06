@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LogInViewModel: Coordinated{
+class LogInViewModel{
 
     // MARK: - enums
     enum Action{
@@ -28,13 +28,7 @@ class LogInViewModel: Coordinated{
 
     // MARK: - properties
     private let fetchService = FetchService()
-    var coordinator: Coordinator
-
-    // MARK: - init
-
-    init(coordinator: LogInCoordinator){
-        self.coordinator = coordinator
-    }
+    var loggedIn: ((UserData, Bool) -> ())?
 
 
     func chageState(_ action: Action){
@@ -47,7 +41,7 @@ class LogInViewModel: Coordinated{
                 DispatchQueue.main.async {
                 	switch result{
                 	case .success(let model):
-                	        (self?.coordinator as? LogInCoordinator)?.onFinish?(model, true)
+                        self?.loggedIn?(model, true)
                 	case .failure(_):
                 	    self?.state = .logInError
                 	}

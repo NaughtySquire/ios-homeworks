@@ -17,6 +17,10 @@ class FeedCoordinator: Coordinator{
     }
 
     func start() {
+        goToFeedVC()
+    }
+
+    func goToFeedVC(){
         let vc = feedFactory.getFeed(coordinator: self)
         rootViewController = UINavigationController(rootViewController: vc, tabBarTitle: "Profile", tabBarSystemImageName: "newspaper.circle")
     }

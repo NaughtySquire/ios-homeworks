@@ -7,11 +7,9 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, Coordinated {
+class ProfileViewController: UIViewController {
 
     // MARK: - properties
-
-    var coordinator: Coordinator
     var photosCellDidTap: (() -> ())?
     var userData: UserData
 
@@ -77,9 +75,8 @@ class ProfileViewController: UIViewController, Coordinated {
 
     // MARK: - init
 
-    init(profileCoordinator: ProfileCoordinator, userData: UserData){
+    init(userData: UserData){
         self.userData = userData
-        coordinator = profileCoordinator
         super.init(nibName: nil, bundle: nil)
     }
 
