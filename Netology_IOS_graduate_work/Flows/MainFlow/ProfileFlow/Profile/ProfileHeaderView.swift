@@ -47,6 +47,7 @@ class ProfileHeaderView: UIView {
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.cornerRadius = 12
+        textField.delegate = self
         textField.addTarget(self, action: #selector(statusTextFieldChangesHandler), for: .editingChanged)
         return textField
     }()
@@ -131,4 +132,10 @@ class ProfileHeaderView: UIView {
         ])
     }
 
+}
+
+extension ProfileHeaderView: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.endEditing(true)
+    }
 }
