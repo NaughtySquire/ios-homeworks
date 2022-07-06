@@ -118,9 +118,11 @@ class ProfileHeaderView: UIView {
 
             fullnameLabel.topAnchor.constraint(equalTo: contentWhiteView.topAnchor, constant: 27),
             fullnameLabel.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 16),
+            fullnameLabel.rightAnchor.constraint(equalTo: contentWhiteView.rightAnchor, constant: -16),
 
             statusLabel.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -16),
             statusLabel.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 16),
+            statusLabel.rightAnchor.constraint(equalTo: contentWhiteView.rightAnchor, constant: -16),
 
             statusTextField.heightAnchor.constraint(equalToConstant: 40),
             statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -16),

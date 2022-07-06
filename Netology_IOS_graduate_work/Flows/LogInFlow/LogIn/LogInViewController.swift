@@ -18,7 +18,14 @@ class LogInViewController: UIViewController {
 
     private lazy var contentView: UIView = {
         let view = UIView()
-        [logoImageView, textFieldsContainerView, logInButton].forEach(){view.addSubview($0)}
+        [logoImageView,
+         textFieldsContainerView,
+         logInButton,
+         logInIndicator,
+         logInStateLabel].forEach{
+            view.addSubview($0)
+
+        }
         return view
     }()
 
@@ -71,6 +78,20 @@ class LogInViewController: UIViewController {
         return textField
     }()
 
+    let logInIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        return indicator
+    }()
+    let logInStateLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Вы ввели неправильный логин или пароль"
+        label.textColor = .red
+        label.alpha = 0
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        return label
+    }()
+
     private lazy var logInButton: UIButton = {
         let button = UIButton(configuration: .filled())
         button.setTitle("LogIn", for: .normal)
@@ -108,6 +129,7 @@ class LogInViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         view.addSubview(scrollView)
         addConstraints()
+        setupViewModel()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -131,6 +153,21 @@ class LogInViewController: UIViewController {
                                                 password: passwordTextField.text!))
     }
 
+    func setupViewModel(){
+        viewModel.stateChanged = {[weak self]  state in
+            switch state{
+            case .initial:
+                ()
+            case .loading:
+                self?.logInStateLabel.alpha = 0
+                self?.logInIndicator.startAnimating()
+            case .logInError:
+                self?.logInIndicator.stopAnimating()
+                self?.logInStateLabel.alpha = 1
+            }
+        }
+    }
+
     @objc
     func kbdShow(notification: NSNotification){
         if let kbdSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue{
@@ -146,13 +183,18 @@ class LogInViewController: UIViewController {
 
     // MARK: constraints
     func addConstraints(){
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        textFieldsContainerView.translatesAutoresizingMaskIntoConstraints = false
-        usernameTextField.translatesAutoresizingMaskIntoConstraints = false
-        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
-        logInButton.translatesAutoresizingMaskIntoConstraints = false
+
+        [scrollView,
+         contentView,
+         logoImageView,
+         textFieldsContainerView,
+         usernameTextField,
+         passwordTextField,
+         logInButton,
+         logInIndicator,
+         logInStateLabel].forEach{
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
 
         NSLayoutConstraint.activate([
 
@@ -192,7 +234,14 @@ class LogInViewController: UIViewController {
             logInButton.topAnchor.constraint(equalTo: textFieldsContainerView.bottomAnchor, constant: 16),
             logInButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
-            logInButton.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor)
+            logInButton.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor),
+
+            logInIndicator.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 10),
+            logInIndicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+
+            logInStateLabel.topAnchor.constraint(equalTo: logInButton.bottomAnchor),
+            logInStateLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            logInStateLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor)
         ])
     }
 

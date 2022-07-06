@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol ProfileModulesFactory{
+protocol ProfileFactory{
     func getProfile(coordinator: ProfileCoordinator, userData: UserData) -> ProfileViewController
     func getPhotos(coordinator: ProfileCoordinator) -> PhotosViewController
 }

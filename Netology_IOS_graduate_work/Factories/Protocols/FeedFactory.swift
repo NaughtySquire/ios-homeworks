@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol FeedModulesFactory{
+protocol FeedFactory{
 
     func getFeed(coordinator: FeedCoordinator) -> FeedViewController
 

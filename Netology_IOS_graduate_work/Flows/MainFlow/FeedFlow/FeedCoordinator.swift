@@ -9,10 +9,10 @@ import Foundation
 import UIKit
 
 class FeedCoordinator: Coordinator{
-    private var feedFactory: FeedModulesFactory
+    private var feedFactory: FeedFactory
     private(set) var rootViewController: UINavigationController?
 
-    init(feedFactory: FeedModulesFactory){
+    init(feedFactory: FeedFactory){
         self.feedFactory = feedFactory
     }
 

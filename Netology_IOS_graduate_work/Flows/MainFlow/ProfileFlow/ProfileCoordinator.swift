@@ -9,10 +9,10 @@ import Foundation
 import UIKit
 
 class ProfileCoordinator: Coordinator{
-    private var profileFactory: ProfileModulesFactory
+    private var profileFactory: ProfileFactory
     private(set) var rootViewController: UINavigationController?
     private let userData: UserData
-    init(profileFactory: ProfileModulesFactory, userData: UserData){
+    init(profileFactory: ProfileFactory, userData: UserData){
         self.profileFactory = profileFactory
         self.userData = userData
     }

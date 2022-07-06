@@ -12,10 +12,10 @@ class LogInCoordinator: Coordinator{
 
     var onFinish: ((UserData, Bool) -> ())?
 
-    private let logInFactory: LogInModulesFactory
+    private let logInFactory: LogInFactory
     private(set) var rootViewController: UINavigationController?
 
-    init(logInFactory: LogInModulesFactory){
+    init(logInFactory: LogInFactory){
         self.logInFactory = logInFactory
     }
 

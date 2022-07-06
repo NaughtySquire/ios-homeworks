@@ -7,16 +7,16 @@
 
 import Foundation
 
-
-class CoordinatorFactory{
-    enum CoordinatorType{
-        case appCoordinator
-        case mainCoordinator
-        case logInCoordinator
-        case profileCoordinator
-        case feedCoordinator
-    }
+//
+//class CoordinatorFactory{
+//    enum CoordinatorType{
+//        case appCoordinator
+//        case mainCoordinator
+//        case logInCoordinator
+//        case profileCoordinator
+//        case feedCoordinator
+//    }
 //    func getCoordinator(_ coordinatorType: CoordinatorType) -> Coordinator{
 //        return ProfileCoordinator()
 //    }
-}
+//}

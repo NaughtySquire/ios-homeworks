@@ -19,7 +19,7 @@ class LogInViewModel: Coordinated{
         case loading
         case logInError
     }
-    private var stateChanged: ((State)->())?
+    var stateChanged: ((State)->())?
     private var state: State = .initial {
         didSet{
             stateChanged?(state)
@@ -44,13 +44,13 @@ class LogInViewModel: Coordinated{
         case .logInButtonTapped(username: let username, password: let password):
             state = .loading
             fetchService.fetchUser(username: username, password: password){[weak self] result in
-                switch result{
-                case .success(let model):
-                    DispatchQueue.main.async {
-                        (self?.coordinator as? LogInCoordinator)?.onFinish?(model, true)
-                    }
-                case .failure(_):
-                    self?.state = .logInError
+                DispatchQueue.main.async {
+                	switch result{
+                	case .success(let model):
+                	        (self?.coordinator as? LogInCoordinator)?.onFinish?(model, true)
+                	case .failure(_):
+                	    self?.state = .logInError
+                	}
                 }
             }
         }

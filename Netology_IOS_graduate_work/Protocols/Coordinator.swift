@@ -9,5 +9,4 @@ import UIKit
 
 protocol Coordinator{
     func start()
-//    typealias onFinish<Output> = ((Output) -> ())
 }

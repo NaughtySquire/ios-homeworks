@@ -13,8 +13,8 @@ enum FetchErrors: Error{
 
 class FetchService{
     func fetchUser(username: String, password: String, completion: @escaping (Result<UserData, Error>) -> Void){
-        DispatchQueue.global().sync{
-            sleep(1)
+        DispatchQueue.global().async{
+            sleep(2)
             if username == "wolk" && password == "Пароль" {
             completion(.success(UserData(name: "Мудрый",
                                          surname: "Волк",

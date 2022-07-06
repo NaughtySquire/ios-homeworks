@@ -10,10 +10,10 @@ import UIKit
 
 
 
-class ModuleFactory: LogInModulesFactory,
-                     ProfileModulesFactory,
-                     FeedModulesFactory{
-
+class ModuleFactory: LogInFactory,
+                     ProfileFactory,
+                     FeedFactory{
+    // MARK: - main
     func getMain(mainCoordinator: MainCoordinator, userData: UserData) -> UITabBarController{
         let mainController = UITabBarController()
         let profileCoordinator = ProfileCoordinator(profileFactory: self, userData: userData)
@@ -27,13 +27,13 @@ class ModuleFactory: LogInModulesFactory,
         ]
         return mainController
     }
-
+    // MARK: - logIn
     func getLogIn(coordinator: LogInCoordinator) -> LogInViewController {
         let logInViewModel = LogInViewModel(coordinator: coordinator)
         let vc = LogInViewController(viewModel: logInViewModel)
         return vc
     }
-
+    // MARK: - profile
     func getProfile(coordinator: ProfileCoordinator, userData: UserData) -> ProfileViewController {
         let vc = ProfileViewController(profileCoordinator: coordinator, userData: userData)
         vc.coordinator = coordinator
@@ -45,7 +45,7 @@ class ModuleFactory: LogInModulesFactory,
         vc.navigationItem.title = "Photo Gallery"
         return vc
     }
-
+    // MARK: - feed
     func getFeed(coordinator: FeedCoordinator) -> FeedViewController {
         let vc = FeedViewController()
         return vc
