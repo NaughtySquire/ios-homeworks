@@ -31,7 +31,7 @@ class LogInViewModel{
     var loggedIn: ((UserData, Bool) -> ())?
 
 
-    func chageState(_ action: Action){
+    func doAction(_ action: Action){
         switch action {
         case .viewIsLoaded:
             state = .initial

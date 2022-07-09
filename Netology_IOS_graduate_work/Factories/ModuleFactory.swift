@@ -28,21 +28,26 @@ class ModuleFactory: LogInFactory,
         return mainController
     }
     // MARK: - logIn
-    func getLogIn(coordinator: LogInCoordinator) -> LogInViewController {
-        let logInViewModel = LogInViewModel()
-        logInViewModel.loggedIn = {[weak coordinator] userData, isLoggedIn in
-            coordinator?.onFinish?(userData, isLoggedIn)
-        }
-        let vc = LogInViewController(viewModel: logInViewModel)
+    func getLogIn(viewModel: LogInViewModel) -> LogInViewController {
+        let vc = LogInViewController(viewModel: viewModel)
+        vc.view.backgroundColor = .white
+        vc.addSubviews()
+        vc.addConstraints()
+        vc.setupViewModel()
         return vc
     }
     // MARK: - profile
-    func getProfile(coordinator: ProfileCoordinator, userData: UserData) -> ProfileViewController {
-        let vc = ProfileViewController(userData: userData)
+    func getProfile(viewModel: ProfileViewModel) -> ProfileViewController {
+        let vc = ProfileViewController(viewModel: viewModel)
+        vc.view.backgroundColor = .systemGray6
+        vc.addSubviews()
+        vc.addConstraints()
+        vc.setupGesture()
+        vc.setupViewModel()
         return vc
     }
 
-    func getPhotos(coordinator: ProfileCoordinator) -> PhotosViewController {
+    func getPhotos() -> PhotosViewController {
         let vc = PhotosViewController()
         vc.navigationItem.title = "Photo Gallery"
         return vc

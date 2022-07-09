@@ -10,9 +10,7 @@ import UIKit
 class LogInViewController: UIViewController {
 
     // MARK: - properties
-
-    private let moduleFactory = ModuleFactory()
-    private var viewModel: LogInViewModel
+    var viewModel: LogInViewModel
 
     // MARK: - views
 
@@ -111,7 +109,7 @@ class LogInViewController: UIViewController {
     }()
 
     // MARK: - init
-
+    
     init(viewModel: LogInViewModel){
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -121,16 +119,7 @@ class LogInViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-
     // MARK: - life cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        navigationController?.navigationBar.isHidden = true
-        view.addSubview(scrollView)
-        addConstraints()
-        setupViewModel()
-    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -149,9 +138,14 @@ class LogInViewController: UIViewController {
     // MARK: functions
     @objc
     func goToProfile(){
-        viewModel.chageState(.logInButtonTapped(username: usernameTextField.text!,
+        viewModel.doAction(.logInButtonTapped(username: usernameTextField.text!,
                                                 password: passwordTextField.text!))
     }
+
+    func addSubviews(){
+        self.view.addSubview(scrollView)
+    }
+
 
     func setupViewModel(){
         viewModel.stateChanged = {[weak self]  state in

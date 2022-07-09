@@ -7,12 +7,15 @@
 
 import UIKit
 
+protocol ProfileViewControllerDelagate{
+    func updateStatus(status: String)
+}
+
 class ProfileViewController: UIViewController {
 
     // MARK: - properties
-    var photosCellDidTap: (() -> ())?
-    var userData: UserData
-
+    private var viewModel: ProfileViewModel
+    private var delegate: ProfileViewControllerDelagate?
 
     // MARK: - cells dictionary
     // key is a number of section that contains values
@@ -30,7 +33,11 @@ class ProfileViewController: UIViewController {
 
     // MARK: - views
 
-    lazy var profileHeader = ProfileHeaderView(userData: userData)
+    private lazy var profileHeader = ProfileHeaderView(viewModel: viewModel,
+                                                       frame: CGRect(x: 0,
+                                                             y: 0,
+                                                             width: view.safeAreaLayoutGuide.layoutFrame.width,
+                                                             height: 220))
 
     private lazy var mainTable: UITableView = {
         let table = UITableView()
@@ -75,9 +82,10 @@ class ProfileViewController: UIViewController {
 
     // MARK: - init
 
-    init(userData: UserData){
-        self.userData = userData
+    init(viewModel: ProfileViewModel){
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        self.delegate = self.profileHeader
     }
 
     required init?(coder: NSCoder) {
@@ -85,21 +93,31 @@ class ProfileViewController: UIViewController {
     }
 
     //MARK: - life cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        profileHeader.frame = CGRect(x: 0, y: 0, width: view.safeAreaLayoutGuide.layoutFrame.width, height: 220)
-        view.backgroundColor = .systemGray6
-        [mainTable, blackView].forEach{
-            view.addSubview($0)
-        }
-        addConstraints()
-        setupGesture()
-    }
+
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
     }
 
-    //MARK: - gestures
+    // MARK: - functions
+
+    func addSubviews(){
+        [mainTable, blackView].forEach{
+            view.addSubview($0)
+        }
+    }
+
+    func setupViewModel(){
+        viewModel.stateChanged = { [weak self] state in
+            switch state{
+            case .initial:
+                ()
+            case .statusDidChange(let newStatus):
+                self?.delegate?.updateStatus(status: newStatus)
+            }
+        }
+    }
+
+    // MARK: - gestures
 
     func setupGesture(){
         profileHeader.profileImage.addGestureRecognizer(
@@ -110,7 +128,7 @@ class ProfileViewController: UIViewController {
     }
 
     @objc
-    func avatarTapAction(){
+    private func avatarTapAction(){
         let scalilgFactor = self.mainTable.bounds.width / self.blackViewProfileImage.bounds.width
         UIView.animate(withDuration: 0.5, animations: {
             self.blackView.alpha = 1
@@ -126,7 +144,7 @@ class ProfileViewController: UIViewController {
     }
 
     @objc
-    func blackViewCrossTapAction(){
+    private func blackViewCrossTapAction(){
         UIView.animate(withDuration: 0.3, animations: {
             self.blackViewCross.alpha = 0
         }, completion: { _ in
@@ -138,7 +156,7 @@ class ProfileViewController: UIViewController {
     }
 
     @objc
-    func changeAvatarCornerRadius(_ gesture: UIPinchGestureRecognizer){
+    private func changeAvatarCornerRadius(_ gesture: UIPinchGestureRecognizer){
         if gesture.state == .changed{
             let scale = min(gesture.scale - 0.5, 1)
             let cornerRadius = min((1 - scale) * 64, 64)
@@ -187,6 +205,7 @@ extension ProfileViewController: UITableViewDelegate{
         cells.keys.count
     }
 }
+
 extension ProfileViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         cells[section]!.count
@@ -197,7 +216,8 @@ extension ProfileViewController: UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0{
-            photosCellDidTap?()
+            viewModel.doAction(.photosCellDidTap)
         }
     }
 }
+

@@ -9,12 +9,13 @@ import UIKit
 
 class ProfileHeaderView: UIView {
 
-    private let userData: UserData
+    // MARK: - views
     private lazy var contentWhiteView = UIView()
+    private var viewModel: ProfileViewModel
 
     lazy var profileImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: userData.avatarImageName)
+        image.image = UIImage(named: viewModel.userData.avatarImageName)
         image.layer.masksToBounds = true
         image.layer.cornerRadius = 64
         image.layer.borderColor = UIColor.white.cgColor
@@ -26,16 +27,16 @@ class ProfileHeaderView: UIView {
 
     private lazy var fullnameLabel: UILabel = {
         let label = UILabel()
+        label.text = viewModel.userData.name + " " + viewModel.userData.surname
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = .black
-        label.text = userData.name + " " + userData.surname
         return label
     }()
     private lazy var statusLabel: UILabel = {
         let label = UILabel()
+        label.text = viewModel.userData.status
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = .gray
-        label.text = userData.status
         label.isUserInteractionEnabled = true
         return label
     }()
@@ -48,7 +49,6 @@ class ProfileHeaderView: UIView {
         textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.cornerRadius = 12
         textField.delegate = self
-        textField.addTarget(self, action: #selector(statusTextFieldChangesHandler), for: .editingChanged)
         return textField
     }()
     private lazy var setStatusButton: UIButton = {
@@ -62,13 +62,14 @@ class ProfileHeaderView: UIView {
         button.layer.shadowOpacity = 0.7
         button.backgroundColor = .systemBlue
         button.setTitle("Set status", for: .normal)
-        button.addTarget(self, action: #selector(updateStatus), for: .touchUpInside)
+        button.addTarget(self, action: #selector(setStatusButtonDidTap), for: .touchUpInside)
         return button
     }()
+    // MARK: - init
 
-    init(userData: UserData) {
-        self.userData = userData
-        super.init(frame: .zero)
+    init(viewModel: ProfileViewModel, frame: CGRect) {
+        self.viewModel = viewModel
+        super.init(frame: frame)
         [statusTextField, statusLabel, fullnameLabel, profileImage, setStatusButton, profileImage].forEach{
             contentWhiteView.addSubview($0)
         }
@@ -81,17 +82,13 @@ class ProfileHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    @objc
-    func updateStatus(){
-        statusLabel.text = userData.status
-        print(statusLabel.text ?? "Статус не установлен")
-
-    }
+    // MARK: - functions
 
     @objc
-    func statusTextFieldChangesHandler(_ textField: UITextField){
-        userData.status = textField.text ?? userData.status
+    func setStatusButtonDidTap(){
+        viewModel.doAction(.setStatusButtonDidTap(newStatus: statusTextField.text!))
     }
+
 
     func addConstraints(){
         setStatusButton.translatesAutoresizingMaskIntoConstraints = false
@@ -131,11 +128,17 @@ class ProfileHeaderView: UIView {
             statusTextField.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 16),
         ])
     }
-
 }
 
 extension ProfileHeaderView: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.endEditing(true)
+    }
+}
+
+
+extension ProfileHeaderView: ProfileViewControllerDelagate{
+    func updateStatus(status: String) {
+        statusLabel.text = status
     }
 }

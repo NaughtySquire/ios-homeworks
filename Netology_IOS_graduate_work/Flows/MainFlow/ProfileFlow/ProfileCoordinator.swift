@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 class ProfileCoordinator: Coordinator{
-    private var profileFactory: ProfileFactory
+
+    private weak var profileFactory: ProfileFactory?
     private(set) var rootViewController: UINavigationController?
     private let userData: UserData
     init(profileFactory: ProfileFactory, userData: UserData){
@@ -22,14 +23,17 @@ class ProfileCoordinator: Coordinator{
     }
 
     private func goToProfileVC(){
-        let vc = profileFactory.getProfile(coordinator: self, userData: userData)
-        vc.photosCellDidTap = { [weak self] in
+        let viewModel = ProfileViewModel(userData: userData)
+        viewModel.goToPhotos = {[weak self] in
             self?.goToPhotosVC()
         }
-        rootViewController = UINavigationController(rootViewController: vc, tabBarTitle: "Profile", tabBarSystemImageName: "person.crop.circle")
+        let vc = profileFactory?.getProfile(viewModel: viewModel)
+        rootViewController = UINavigationController(rootViewController: vc!,
+                                                    tabBarTitle: "Profile",
+                                                    tabBarSystemImageName: "person.crop.circle")
     }
     private func goToPhotosVC(){
-        let vc = profileFactory.getPhotos(coordinator: self)
-        rootViewController?.pushViewController(vc, animated: true)
+        let vc = profileFactory?.getPhotos()
+        rootViewController?.pushViewController(vc!, animated: true)
     }
 }

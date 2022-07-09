@@ -10,8 +10,8 @@ import UIKit
 
 class MainCoordinator: Coordinator{
 
-    private(set) var rootViewController = UITabBarController()
-    private let mainFactory: ModuleFactory
+    private(set) var rootViewController: UITabBarController?
+    private weak var mainFactory: ModuleFactory?
     var childCoordinators = [Coordinator]()
     var userData: UserData
 
@@ -21,7 +21,7 @@ class MainCoordinator: Coordinator{
     }
 
     func start() {
-        rootViewController = mainFactory.getMain(mainCoordinator: self, userData: userData)
+        rootViewController = mainFactory?.getMain(mainCoordinator: self, userData: userData)
     }
 
 

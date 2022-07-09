@@ -13,16 +13,11 @@ class AppCoordinator: Coordinator{
 
     // MARK: - properties
 
-    var window: UIWindow
+    private var window: UIWindow
     private let moduleFactory = ModuleFactory()
-    private var childCoordinators = [Coordinator]()
+    private var childCoordinators = [any Coordinator]()
     private var isLoggedIn = false
-    private lazy var userData = UserData(name: "test",
-                                         surname: "test",
-                                         status: "test",
-                                         avatarImageName: "wolk",
-                                         userPosts: posts)
-
+    
     // MARK: - init
 
     init(window: UIWindow){
@@ -33,16 +28,19 @@ class AppCoordinator: Coordinator{
 
     func start(){
         if isLoggedIn{
-            goToMainFlow()
+            goToMainFlow(userData: UserData(name: "test",
+                                            surname: "test",
+                                            status: "test",
+                                            avatarImageName: "wolk",
+                                            userPosts: posts))
         }else{
             goToLogInFlow()
         }
         window.makeKeyAndVisible()
     }
 
-    private func goToMainFlow(){
+    private func goToMainFlow(userData: UserData){
         let mainCoordinator = MainCoordinator(mainFactory: moduleFactory, userData: userData)
-        self.childCoordinators.removeAll()
         self.childCoordinators = [mainCoordinator]
         mainCoordinator.start()
         window.rootViewController = mainCoordinator.rootViewController
@@ -52,9 +50,8 @@ class AppCoordinator: Coordinator{
         let logInCoordinator = LogInCoordinator(logInFactory: moduleFactory)
         self.childCoordinators = [logInCoordinator]
         logInCoordinator.onFinish = {[weak self] userData, isLoggedIn in
-            self?.userData = userData
             self?.isLoggedIn = isLoggedIn
-            self?.goToMainFlow()
+            self?.goToMainFlow(userData: userData)
         }
         logInCoordinator.start()
         window.rootViewController = logInCoordinator.rootViewController!

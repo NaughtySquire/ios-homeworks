@@ -8,6 +8,6 @@
 import Foundation
 import UIKit
 
-protocol LogInFactory{
-    func getLogIn(coordinator: LogInCoordinator) -> LogInViewController
+protocol LogInFactory: AnyObject{
+    func getLogIn(viewModel: LogInViewModel) -> LogInViewController
 }
