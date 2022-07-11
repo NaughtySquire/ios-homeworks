@@ -38,8 +38,8 @@ class PhotosCollectionViewCell: UICollectionViewCell {
 
     //MARK: - functions
 
-    func loadImage(imageName: String){
-        photo.image = UIImage(named: imageName)
+    func loadImage(image: UIImage){
+        photo.image = image
     }
 
     // MARK: - constraints

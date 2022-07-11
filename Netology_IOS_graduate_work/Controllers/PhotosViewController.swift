@@ -12,9 +12,9 @@ class PhotosViewController: UIViewController {
 
     // MARK: - properties
     private let numberOfPhotos = 20
-    private let photos: [UIImage] = {
+    private var photos: [UIImage] = {
         var images = [UIImage]()
-        for i in 0..<500{
+        for i in 0..<20{
             images.append(UIImage(named: "Photos/\(i % 20)")!)
         }
         return images
@@ -60,12 +60,16 @@ class PhotosViewController: UIViewController {
          */
         //  Затем все методы запускал поотдельности.
         //  Один раскоментировал, запустил, записал время, закоментировал, перешел к следующему.
-//        imageProcessor.processImagesOnThread(sourceImages: photos,
-//                                             filter: .allCases.randomElement()!,
-//                                             qos: .utility,
-//                                             completion: {images in
-//            print("utility: ", CFAbsoluteTimeGetCurrent() - startTime)
-//        }) // 500 фото -> (18.3, 15.7) сек
+        imageProcessor.processImagesOnThread(sourceImages: photos,
+                                             filter: .allCases.randomElement()!,
+                                             qos: .utility,
+                                             completion: {[weak self] images in
+            print("utility: ", CFAbsoluteTimeGetCurrent() - startTime)
+            DispatchQueue.main.async {
+                self?.photos = images.map{ UIImage(cgImage: $0!) }
+                self?.photosCollection.reloadData()
+            }
+        }) // 500 фото -> (18.3, 15.7) сек
 
 
 //        imageProcessor.processImagesOnThread(sourceImages: photos,
@@ -132,7 +136,7 @@ extension PhotosViewController: UICollectionViewDataSource{
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier, for: indexPath) as! PhotosCollectionViewCell
-        cell.loadImage(imageName: "Photos/\(indexPath.row)")
+        cell.loadImage(image: photos[indexPath.row])
         return cell
     }
 
