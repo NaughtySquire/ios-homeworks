@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		79003B11284A2B530076EBAF /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79003B10284A2B530076EBAF /* UINavigationController.swift */; };
+		7917DD9E287AEB1C001F52F8 /* iOSIntPackage-3.2.3 in Resources */ = {isa = PBXBuildFile; fileRef = 7917DD9D287AEB1C001F52F8 /* iOSIntPackage-3.2.3 */; };
 		79372D85282D74450082DAB1 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79372D84282D74450082DAB1 /* LogInViewController.swift */; };
 		79398E71281AC84700E2648C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79398E70281AC84700E2648C /* Post.swift */; };
 		79398E73281AD24600E2648C /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79398E72281AD24600E2648C /* InfoViewController.swift */; };
@@ -24,10 +25,12 @@
 		79C53EF1281ABB5600E56961 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C53EF0281ABB5600E56961 /* PostViewController.swift */; };
 		79C94A722842520D00925AAA /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C94A712842520D00925AAA /* PhotosViewController.swift */; };
 		79C94A7628428CD300925AAA /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C94A7528428CD300925AAA /* PhotosCollectionViewCell.swift */; };
+		79FEEDEC287C67D300C138F4 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 79FEEDEB287C67D300C138F4 /* iOSIntPackage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		79003B10284A2B530076EBAF /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
+		7917DD9D287AEB1C001F52F8 /* iOSIntPackage-3.2.3 */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "iOSIntPackage-3.2.3"; path = "../../../Downloads/iOSIntPackage-3.2.3"; sourceTree = "<group>"; };
 		79372D84282D74450082DAB1 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		79398E70281AC84700E2648C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		79398E72281AD24600E2648C /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79FEEDEC287C67D300C138F4 /* iOSIntPackage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +84,7 @@
 			children = (
 				794D507328183BFA00B1A28E /* Netology_IOS_graduate_work */,
 				794D507228183BFA00B1A28E /* Products */,
+				79FEEDEA287C67D300C138F4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,6 +99,7 @@
 		794D507328183BFA00B1A28E /* Netology_IOS_graduate_work */ = {
 			isa = PBXGroup;
 			children = (
+				7917DD9D287AEB1C001F52F8 /* iOSIntPackage-3.2.3 */,
 				799760D12860635C00D68308 /* Cells */,
 				799760D02860632F00D68308 /* Controllers */,
 				7961E84D28420973001C4631 /* Data */,
@@ -148,6 +154,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		79FEEDEA287C67D300C138F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -164,6 +177,9 @@
 			dependencies = (
 			);
 			name = Netology_IOS_graduate_work;
+			packageProductDependencies = (
+				79FEEDEB287C67D300C138F4 /* iOSIntPackage */,
+			);
 			productName = "Netology_IB_Instruments'";
 			productReference = 794D507128183BFA00B1A28E /* Netology_IOS_graduate_work.app */;
 			productType = "com.apple.product-type.application";
@@ -195,6 +211,8 @@
 				Base,
 			);
 			mainGroup = 794D506828183BFA00B1A28E;
+			packageReferences = (
+			);
 			productRefGroup = 794D507228183BFA00B1A28E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -210,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				794D508128183BFB00B1A28E /* LaunchScreen.storyboard in Resources */,
+				7917DD9E287AEB1C001F52F8 /* iOSIntPackage-3.2.3 in Resources */,
 				794D507E28183BFB00B1A28E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,6 +462,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		79FEEDEB287C67D300C138F4 /* iOSIntPackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = iOSIntPackage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 794D506928183BFA00B1A28E /* Project object */;
 }
