@@ -11,7 +11,7 @@ class LogInViewController: UIViewController {
     // MARK: - views
     private lazy var contentView: UIView = {
         let view = UIView()
-        [logoImageView, textFieldsContainerView, logInButton].forEach(){view.addSubview($0)}
+        [logoImageView, textFieldsContainerView, logInButton, pickUpPasswordButton, activityIndicator].forEach(){view.addSubview($0)}
         return view
     }()
 
@@ -80,6 +80,47 @@ class LogInViewController: UIViewController {
         return button
     }()
 
+    private lazy var activityIndicator = UIActivityIndicatorView(style: .medium)
+
+    private lazy var pickUpPasswordButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Подобрать пароль", for: .normal)
+        button.layer.cornerRadius = 10
+        button.layer.masksToBounds = true
+        button.backgroundColor = .red
+        button.addAction(.init(handler: {_ in
+
+            self.activityIndicator.startAnimating()
+            button.isEnabled = false
+            button.alpha = 0.6
+            self.passwordTextField.text = ""
+            self.passwordTextField.placeholder = ""
+            self.passwordTextField.isEnabled = false
+
+            var password = ""
+            var pickUpPasswordWorkItem = DispatchWorkItem {
+                password = BruteForce.bruteForce(passwordToUnlock: self.generatePassword())
+            }
+            pickUpPasswordWorkItem.notify(queue: .main){
+                self.activityIndicator.stopAnimating()
+                self.passwordTextField.text = password
+                self.passwordTextField.placeholder = "Password"
+                self.passwordTextField.isSecureTextEntry = false
+                self.passwordTextField.isEnabled = true
+                button.isEnabled = true
+                button.alpha = 1
+            }
+
+            DispatchQueue.global().async{
+                pickUpPasswordWorkItem.perform()
+            }
+
+
+        }), for: .touchUpInside)
+        return button
+    }()
+
+
     // MARK: - did Load
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,6 +138,13 @@ class LogInViewController: UIViewController {
         rootVC.viewControllers = [profileVC, feedVC]
         rootVC.tabBar.backgroundColor = .systemBackground
         navigationController?.pushViewController(rootVC, animated: true)
+    }
+    func generatePassword() -> String{
+        var password = ""
+        for _ in 0..<3{
+            password += String(String().printable.randomElement()!)
+        }
+        return password
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -116,7 +164,7 @@ class LogInViewController: UIViewController {
     @objc
     func kbdShow(notification: NSNotification){
         if let kbdSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue{
-            scrollView.contentInset.bottom = kbdSize.height + 50
+            scrollView.contentInset.bottom = kbdSize.height + 150
             scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: kbdSize.height + 100, right: 0)
         }
     }
@@ -135,7 +183,8 @@ class LogInViewController: UIViewController {
         logInTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         logInButton.translatesAutoresizingMaskIntoConstraints = false
-
+        pickUpPasswordButton.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
 
             scrollView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
@@ -174,7 +223,17 @@ class LogInViewController: UIViewController {
             logInButton.topAnchor.constraint(equalTo: textFieldsContainerView.bottomAnchor, constant: 16),
             logInButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
-            logInButton.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor)
+            logInButton.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor),
+
+            pickUpPasswordButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
+            pickUpPasswordButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 16),
+            pickUpPasswordButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
+            pickUpPasswordButton.heightAnchor.constraint(equalToConstant: 50),
+            pickUpPasswordButton.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor),
+
+            activityIndicator.centerYAnchor.constraint(equalTo: passwordTextField.centerYAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: passwordTextField.centerXAnchor)
+
         ])
     }
 
