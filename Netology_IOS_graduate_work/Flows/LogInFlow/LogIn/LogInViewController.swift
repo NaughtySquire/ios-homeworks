@@ -8,10 +8,22 @@
 import UIKit
 
 class LogInViewController: UIViewController {
+
+    // MARK: - properties
+    var viewModel: LogInViewModel
+
     // MARK: - views
+
     private lazy var contentView: UIView = {
         let view = UIView()
-        [logoImageView, textFieldsContainerView, logInButton].forEach(){view.addSubview($0)}
+        [logoImageView,
+         textFieldsContainerView,
+         logInButton,
+         logInIndicator,
+         logInStateLabel].forEach{
+            view.addSubview($0)
+
+        }
         return view
     }()
 
@@ -30,7 +42,7 @@ class LogInViewController: UIViewController {
     private lazy var textFieldsContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray6
-        [logInTextField, passwordTextField].forEach(){view.addSubview($0)}
+        [usernameTextField, passwordTextField].forEach(){view.addSubview($0)}
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
         view.layer.borderWidth = 0.5
@@ -38,13 +50,14 @@ class LogInViewController: UIViewController {
         return view
     }()
 
-    private lazy var logInTextField: UITextField = {
+    private lazy var usernameTextField: UITextField = {
         let textField = UITextField()
         textField.textColor = .black
         textField.font = UIFont.systemFont(ofSize: 16)
         textField.layer.borderWidth = 0.25
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.placeholder = "Email or phone"
+        textField.text = "wolk"
         textField.autocapitalizationType = .none
         textField.delegate = self
         return textField
@@ -56,10 +69,25 @@ class LogInViewController: UIViewController {
         textField.layer.borderWidth = 0.25
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.placeholder = "Password"
+        textField.text = "Пароль"
         textField.autocapitalizationType = .none
         textField.isSecureTextEntry = true
         textField.delegate = self
         return textField
+    }()
+
+    let logInIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        return indicator
+    }()
+    let logInStateLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Вы ввели неправильный логин или пароль"
+        label.textColor = .red
+        label.alpha = 0
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        return label
     }()
 
     private lazy var logInButton: UIButton = {
@@ -80,24 +108,18 @@ class LogInViewController: UIViewController {
         return button
     }()
 
-    // MARK: - did Load
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        navigationController?.navigationBar.isHidden = true
-        view.addSubview(scrollView)
-        addConstraints()
+    // MARK: - init
+    
+    init(viewModel: LogInViewModel){
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
     }
-    // MARK: functions
-    @objc
-    func goToProfile(){
-        let feedVC = UINavigationController(rootViewController: FeedViewController(), tabBarTitle: "Feed", tabBarystemImageName: "newspaper.circle.fill")
-        let profileVC = UINavigationController(rootViewController: ProfileViewController(), tabBarTitle: "Profile", tabBarystemImageName: "person.crop.circle.fill")
-        let rootVC = UITabBarController()
-        rootVC.viewControllers = [profileVC, feedVC]
-        rootVC.tabBar.backgroundColor = .systemBackground
-        navigationController?.pushViewController(rootVC, animated: true)
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - life cycle
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -111,6 +133,33 @@ class LogInViewController: UIViewController {
         let nc = NotificationCenter.default
         nc.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         nc.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    // MARK: functions
+    @objc
+    func goToProfile(){
+        viewModel.handleAction(.logInButtonTapped(username: usernameTextField.text!,
+                                                  password: passwordTextField.text!))
+    }
+
+    func addSubviews(){
+        self.view.addSubview(scrollView)
+    }
+
+
+    func setupViewModel(){
+        viewModel.stateChanged = {[weak self]  state in
+            switch state{
+            case .initial:
+                ()
+            case .loading:
+                self?.logInStateLabel.alpha = 0
+                self?.logInIndicator.startAnimating()
+            case .logInError:
+                self?.logInIndicator.stopAnimating()
+                self?.logInStateLabel.alpha = 1
+            }
+        }
     }
 
     @objc
@@ -128,13 +177,18 @@ class LogInViewController: UIViewController {
 
     // MARK: constraints
     func addConstraints(){
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        textFieldsContainerView.translatesAutoresizingMaskIntoConstraints = false
-        logInTextField.translatesAutoresizingMaskIntoConstraints = false
-        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
-        logInButton.translatesAutoresizingMaskIntoConstraints = false
+
+        [scrollView,
+         contentView,
+         logoImageView,
+         textFieldsContainerView,
+         usernameTextField,
+         passwordTextField,
+         logInButton,
+         logInIndicator,
+         logInStateLabel].forEach{
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
 
         NSLayoutConstraint.activate([
 
@@ -160,10 +214,10 @@ class LogInViewController: UIViewController {
             textFieldsContainerView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
             textFieldsContainerView.heightAnchor.constraint(equalToConstant: 100),
 
-            logInTextField.leftAnchor.constraint(equalTo: textFieldsContainerView.leftAnchor),
-            logInTextField.topAnchor.constraint(equalTo: textFieldsContainerView.topAnchor),
-            logInTextField.widthAnchor.constraint(equalTo: textFieldsContainerView.widthAnchor),
-            logInTextField.heightAnchor.constraint(equalTo: textFieldsContainerView.heightAnchor, multiplier: 0.5),
+            usernameTextField.leftAnchor.constraint(equalTo: textFieldsContainerView.leftAnchor),
+            usernameTextField.topAnchor.constraint(equalTo: textFieldsContainerView.topAnchor),
+            usernameTextField.widthAnchor.constraint(equalTo: textFieldsContainerView.widthAnchor),
+            usernameTextField.heightAnchor.constraint(equalTo: textFieldsContainerView.heightAnchor, multiplier: 0.5),
 
             passwordTextField.leftAnchor.constraint(equalTo: textFieldsContainerView.leftAnchor),
             passwordTextField.bottomAnchor.constraint(equalTo: textFieldsContainerView.bottomAnchor),
@@ -174,7 +228,14 @@ class LogInViewController: UIViewController {
             logInButton.topAnchor.constraint(equalTo: textFieldsContainerView.bottomAnchor, constant: 16),
             logInButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
-            logInButton.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor)
+            logInButton.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor),
+
+            logInIndicator.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 10),
+            logInIndicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+
+            logInStateLabel.topAnchor.constraint(equalTo: logInButton.bottomAnchor),
+            logInStateLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            logInStateLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor)
         ])
     }
 
