@@ -35,9 +35,9 @@ class ProfileViewController: UIViewController {
 
     private lazy var profileHeader = ProfileHeaderView(viewModel: viewModel,
                                                        frame: CGRect(x: 0,
-                                                             y: 0,
-                                                             width: view.safeAreaLayoutGuide.layoutFrame.width,
-                                                             height: 220))
+                                                                     y: 0,
+                                                                     width: view.safeAreaLayoutGuide.layoutFrame.width,
+                                                                     height: 220))
 
     private lazy var mainTable: UITableView = {
         let table = UITableView()
@@ -216,7 +216,7 @@ extension ProfileViewController: UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0{
-            viewModel.doAction(.photosCellDidTap)
+            viewModel.handleAction(.photosCellDidTap)
         }
     }
 }

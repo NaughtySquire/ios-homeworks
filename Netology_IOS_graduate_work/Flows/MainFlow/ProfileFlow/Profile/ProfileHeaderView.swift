@@ -86,7 +86,7 @@ class ProfileHeaderView: UIView {
 
     @objc
     func setStatusButtonDidTap(){
-        viewModel.doAction(.setStatusButtonDidTap(newStatus: statusTextField.text!))
+        viewModel.handleAction(.setStatusButtonDidTap(newStatus: statusTextField.text!))
     }
 
 

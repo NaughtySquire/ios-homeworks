@@ -31,7 +31,7 @@ class LogInViewModel{
     var loggedIn: ((UserData, Bool) -> ())?
 
 
-    func doAction(_ action: Action){
+    func handleAction(_ action: Action){
         switch action {
         case .viewIsLoaded:
             state = .initial

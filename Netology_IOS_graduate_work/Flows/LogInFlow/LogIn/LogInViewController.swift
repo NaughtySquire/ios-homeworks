@@ -138,8 +138,8 @@ class LogInViewController: UIViewController {
     // MARK: functions
     @objc
     func goToProfile(){
-        viewModel.doAction(.logInButtonTapped(username: usernameTextField.text!,
-                                                password: passwordTextField.text!))
+        viewModel.handleAction(.logInButtonTapped(username: usernameTextField.text!,
+                                                  password: passwordTextField.text!))
     }
 
     func addSubviews(){

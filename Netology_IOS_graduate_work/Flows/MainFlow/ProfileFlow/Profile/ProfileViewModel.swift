@@ -32,7 +32,7 @@ class ProfileViewModel{
             stateChanged?(state)
         }
     }
-    func doAction(_ action: Action){
+    func handleAction(_ action: Action){
         switch action{
         case .photosCellDidTap:
             goToPhotos?()
