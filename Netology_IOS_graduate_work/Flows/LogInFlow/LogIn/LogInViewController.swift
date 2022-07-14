@@ -95,7 +95,7 @@ class LogInViewController: UIViewController {
         button.setTitle("LogIn", for: .normal)
         button.layer.cornerRadius = 10
         button.layer.masksToBounds = true
-        button.addTarget(self, action: #selector(goToProfile), for: .touchUpInside)
+        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         button.configurationUpdateHandler = { clousureButton in
             switch clousureButton.state{
             case .normal:
@@ -137,7 +137,7 @@ class LogInViewController: UIViewController {
 
     // MARK: functions
     @objc
-    func goToProfile(){
+    func logInButtonTapped(){
         viewModel.handleAction(.logInButtonTapped(username: usernameTextField.text!,
                                                   password: passwordTextField.text!))
     }
@@ -158,6 +158,8 @@ class LogInViewController: UIViewController {
             case .logInError:
                 self?.logInIndicator.stopAnimating()
                 self?.logInStateLabel.alpha = 1
+            case .connectionError:
+                self?.logInIndicator.stopAnimating()
             }
         }
     }

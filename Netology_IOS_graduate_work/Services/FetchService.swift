@@ -7,26 +7,37 @@
 
 import Foundation
 
-enum FetchErrors: Error{
-    case fetchError
+enum FetchError: Error{
+    case authError
+    case connectionError
 }
 
 class FetchService{
-    func fetchUser(username: String, password: String, completion: @escaping (Result<UserData, Error>) -> Void){
+    func getUser(username: String, password: String, completion: @escaping (Result<UserData, FetchError>) -> Void){
         DispatchQueue.global().async{
             sleep(2)
-            if username == "wolk" && password == "Пароль" {
-            completion(.success(UserData(name: "Мудрый",
-                                         surname: "Волк",
-                                         status: "Сделал дело - дело сделано",
-                                         avatarImageName: "wolk",
-                                         userPosts: posts
-                                        )
-                                )
-                       )
-            }else{
-                completion(.failure(FetchErrors.fetchError))
+            /// Иммитация ошибки плохого соединения с сетью
+            guard [true, true, false].randomElement()! else {
+//                completion(.failure(FetchError.connectionError))
+                preconditionFailure("Интернет недоступен")
+                return
             }
+            do {
+                try completion(.success(self.fetchUser(username, password)))
+            }catch{
+                completion(.failure(FetchError.authError))
+            }
+        }
+    }
+    private func fetchUser(_ username: String, _ password: String) throws -> UserData{
+        if username == "wolk" && password == "Пароль" {
+            return UserData(name: "Мудрый",
+                            surname: "Волк",
+                            status: "Сделал дело - дело сделано",
+                            avatarImageName: "wolk",
+                            userPosts: posts)
+        }else{
+            throw FetchError.authError
         }
     }
 }
