@@ -11,11 +11,11 @@ import UIKit
 class LogInCoordinator: Coordinator{
 
     var onFinish: ((UserData, Bool) -> ())?
-    private weak var logInFactory: ModuleFactory?
+    var controllerFactory: ModuleFactory
     private(set) var rootViewController: UINavigationController?
 
-    init(logInFactory: ModuleFactory){
-        self.logInFactory = logInFactory
+    init(_ controllerFactory: ModuleFactory){
+        self.controllerFactory = controllerFactory
     }
 
     func start() {
@@ -27,7 +27,7 @@ class LogInCoordinator: Coordinator{
         viewModel.loggedIn = {[weak self] userData, isLoggedIn in
             self?.onFinish?(userData, isLoggedIn)
         }
-        let viewController = (logInFactory?.getLogIn(viewModel: viewModel))!
+        let viewController = controllerFactory.getLogIn(viewModel: viewModel)
         self.rootViewController = UINavigationController(rootViewController: viewController)
         rootViewController?.navigationBar.isHidden = true
     }

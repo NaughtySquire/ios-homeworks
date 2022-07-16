@@ -10,14 +10,20 @@ import UIKit
 
 
 
-class ModuleFactory: LogInFactory,
-                     ProfileFactory,
-                     FeedFactory{
+class ModuleFactory{
+    enum ControllerName{
+        case logIn
+        case profile
+        case photos
+        case feed
+        case post
+        case info
+    }
     // MARK: - main
     func getMain(mainCoordinator: MainCoordinator, userData: UserData) -> UITabBarController{
         let mainController = UITabBarController()
-        let profileCoordinator = ProfileCoordinator(profileFactory: self, userData: userData)
-        let feedCoordinator = FeedCoordinator(feedFactory: self)
+        let profileCoordinator = ProfileCoordinator(self, userData)
+        let feedCoordinator = FeedCoordinator(self)
         mainCoordinator.childCoordinators = [profileCoordinator, feedCoordinator]
         profileCoordinator.start()
         feedCoordinator.start()
@@ -27,8 +33,9 @@ class ModuleFactory: LogInFactory,
         ]
         return mainController
     }
+
     // MARK: - logIn
-    func getLogIn(viewModel: LogInViewModel) -> LogInViewController {
+    func getLogIn(viewModel: LogInViewModel) -> UIViewController {
         let vc = LogInViewController(viewModel: viewModel)
         vc.view.backgroundColor = .white
         vc.addSubviews()
@@ -37,7 +44,7 @@ class ModuleFactory: LogInFactory,
         return vc
     }
     // MARK: - profile
-    func getProfile(viewModel: ProfileViewModel) -> ProfileViewController {
+    func getProfile(viewModel: ProfileViewModel) -> UIViewController {
         let vc = ProfileViewController(viewModel: viewModel)
         vc.view.backgroundColor = .systemGray6
         vc.addSubviews()
@@ -47,13 +54,13 @@ class ModuleFactory: LogInFactory,
         return vc
     }
 
-    func getPhotos() -> PhotosViewController {
+    func getPhotos() -> UIViewController {
         let vc = PhotosViewController()
         vc.navigationItem.title = "Photo Gallery"
         return vc
     }
     // MARK: - feed
-    func getFeed(coordinator: FeedCoordinator) -> FeedViewController {
+    func getFeed(coordinator: FeedCoordinator) -> UIViewController {
         let vc = FeedViewController()
         return vc
     }

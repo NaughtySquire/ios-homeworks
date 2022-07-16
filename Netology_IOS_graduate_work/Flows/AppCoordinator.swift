@@ -11,10 +11,12 @@ import UIKit
 
 class AppCoordinator: Coordinator{
 
+
+
     // MARK: - properties
 
     private var window: UIWindow
-    private let moduleFactory = ModuleFactory()
+    var controllerFactory = ModuleFactory()
     private var childCoordinators = [any Coordinator]()
     private var isLoggedIn = false
     
@@ -40,14 +42,14 @@ class AppCoordinator: Coordinator{
     }
 
     private func goToMainFlow(userData: UserData){
-        let mainCoordinator = MainCoordinator(mainFactory: moduleFactory, userData: userData)
+        let mainCoordinator = MainCoordinator(controllerFactory, userData)
         self.childCoordinators = [mainCoordinator]
         mainCoordinator.start()
         window.rootViewController = mainCoordinator.rootViewController
     }
 
     private func goToLogInFlow(){
-        let logInCoordinator = LogInCoordinator(logInFactory: moduleFactory)
+        let logInCoordinator = LogInCoordinator(controllerFactory)
         self.childCoordinators = [logInCoordinator]
         logInCoordinator.onFinish = {[weak self] userData, isLoggedIn in
             self?.isLoggedIn = isLoggedIn

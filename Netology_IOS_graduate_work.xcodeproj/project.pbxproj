@@ -18,10 +18,6 @@
 		795E1FD92870A08300F590CD /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795E1FD82870A08300F590CD /* ProfileCoordinator.swift */; };
 		795E1FDB2870B7A200F590CD /* LogInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795E1FDA2870B7A200F590CD /* LogInCoordinator.swift */; };
 		795E1FDF2871CEAA00F590CD /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795E1FDE2871CEAA00F590CD /* Coordinator.swift */; };
-		795E1FE22874928000F590CD /* ProfileFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795E1FE12874928000F590CD /* ProfileFactory.swift */; };
-		795E1FE42874928E00F590CD /* LogInFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795E1FE32874928E00F590CD /* LogInFactory.swift */; };
-		795E1FE6287492A100F590CD /* FeedFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795E1FE5287492A100F590CD /* FeedFactory.swift */; };
-		795E1FE8287492C700F590CD /* CoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795E1FE7287492C700F590CD /* CoordinatorFactory.swift */; };
 		795E1FEB2874A3B000F590CD /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795E1FEA2874A3B000F590CD /* FeedCoordinator.swift */; };
 		795E1FED2874A48B00F590CD /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795E1FEC2874A48B00F590CD /* UserData.swift */; };
 		795E1FEF2874BDEB00F590CD /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795E1FEE2874BDEB00F590CD /* MainCoordinator.swift */; };
@@ -40,6 +36,7 @@
 		79C53EF1281ABB5600E56961 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C53EF0281ABB5600E56961 /* PostViewController.swift */; };
 		79C94A722842520D00925AAA /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C94A712842520D00925AAA /* PhotosViewController.swift */; };
 		79C94A7628428CD300925AAA /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C94A7528428CD300925AAA /* PhotosCollectionViewCell.swift */; };
+		79D2825F28823C2B00C48B29 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 79D2825E28823C2B00C48B29 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,10 +53,6 @@
 		795E1FD82870A08300F590CD /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		795E1FDA2870B7A200F590CD /* LogInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInCoordinator.swift; sourceTree = "<group>"; };
 		795E1FDE2871CEAA00F590CD /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		795E1FE12874928000F590CD /* ProfileFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFactory.swift; sourceTree = "<group>"; };
-		795E1FE32874928E00F590CD /* LogInFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInFactory.swift; sourceTree = "<group>"; };
-		795E1FE5287492A100F590CD /* FeedFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedFactory.swift; sourceTree = "<group>"; };
-		795E1FE7287492C700F590CD /* CoordinatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactory.swift; sourceTree = "<group>"; };
 		795E1FEA2874A3B000F590CD /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
 		795E1FEC2874A48B00F590CD /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		795E1FEE2874BDEB00F590CD /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
@@ -85,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79D2825F28823C2B00C48B29 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,9 +234,7 @@
 		79C141A8286F59F600146F90 /* Factories */ = {
 			isa = PBXGroup;
 			children = (
-				79F2907C28759C3F002DE458 /* Protocols */,
 				79C141A9286F5A0B00146F90 /* ModuleFactory.swift */,
-				795E1FE7287492C700F590CD /* CoordinatorFactory.swift */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
@@ -254,16 +246,6 @@
 				79003B10284A2B530076EBAF /* UINavigationController.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		79F2907C28759C3F002DE458 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				795E1FE32874928E00F590CD /* LogInFactory.swift */,
-				795E1FE12874928000F590CD /* ProfileFactory.swift */,
-				795E1FE5287492A100F590CD /* FeedFactory.swift */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		79F2907D2875A8DE002DE458 /* MainFlow */ = {
@@ -292,6 +274,9 @@
 			dependencies = (
 			);
 			name = Netology_IOS_graduate_work;
+			packageProductDependencies = (
+				79D2825E28823C2B00C48B29 /* SnapKit */,
+			);
 			productName = "Netology_IB_Instruments'";
 			productReference = 794D507128183BFA00B1A28E /* Netology_IOS_graduate_work.app */;
 			productType = "com.apple.product-type.application";
@@ -323,6 +308,9 @@
 				Base,
 			);
 			mainGroup = 794D506828183BFA00B1A28E;
+			packageReferences = (
+				79D2825D28823C2B00C48B29 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 794D507228183BFA00B1A28E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -349,8 +337,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				795E1FE6287492A100F590CD /* FeedFactory.swift in Sources */,
-				795E1FE42874928E00F590CD /* LogInFactory.swift in Sources */,
 				795E1FD92870A08300F590CD /* ProfileCoordinator.swift in Sources */,
 				798C61542836AEF8009EAF50 /* UIView+extension.swift in Sources */,
 				795E1FEB2874A3B000F590CD /* FeedCoordinator.swift in Sources */,
@@ -365,7 +351,6 @@
 				795E1FEF2874BDEB00F590CD /* MainCoordinator.swift in Sources */,
 				7934AD8B28798ABB00116FC0 /* ProfileViewModel.swift in Sources */,
 				79398E71281AC84700E2648C /* Post.swift in Sources */,
-				795E1FE22874928000F590CD /* ProfileFactory.swift in Sources */,
 				79C1419D286F0F2F00146F90 /* AppCoordinator.swift in Sources */,
 				79003B11284A2B530076EBAF /* UINavigationController.swift in Sources */,
 				795E1FED2874A48B00F590CD /* UserData.swift in Sources */,
@@ -375,7 +360,6 @@
 				79C94A722842520D00925AAA /* PhotosViewController.swift in Sources */,
 				79C141A2286F2D7500146F90 /* User.swift in Sources */,
 				7985A922281BE3350043F288 /* ProfileHeaderView.swift in Sources */,
-				795E1FE8287492C700F590CD /* CoordinatorFactory.swift in Sources */,
 				798C615228367239009EAF50 /* PostTableViewCell.swift in Sources */,
 				795E1FDF2871CEAA00F590CD /* Coordinator.swift in Sources */,
 				795E1FDB2870B7A200F590CD /* LogInCoordinator.swift in Sources */,
@@ -587,6 +571,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		79D2825D28823C2B00C48B29 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		79D2825E28823C2B00C48B29 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79D2825D28823C2B00C48B29 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 794D506928183BFA00B1A28E /* Project object */;
 }

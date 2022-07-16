@@ -10,11 +10,13 @@ import UIKit
 
 class ProfileCoordinator: Coordinator{
 
-    private weak var profileFactory: ProfileFactory?
+    var controllerFactory: ModuleFactory
+
     private(set) var rootViewController: UINavigationController?
     private let userData: UserData
-    init(profileFactory: ProfileFactory, userData: UserData){
-        self.profileFactory = profileFactory
+
+    init(_ controllerFactory: ModuleFactory, _ userData: UserData){
+        self.controllerFactory = controllerFactory
         self.userData = userData
     }
 
@@ -27,13 +29,13 @@ class ProfileCoordinator: Coordinator{
         viewModel.goToPhotos = {[weak self] in
             self?.goToPhotosVC()
         }
-        let vc = profileFactory?.getProfile(viewModel: viewModel)
-        rootViewController = UINavigationController(rootViewController: vc!,
+        let vc = controllerFactory.getProfile(viewModel: viewModel)
+        rootViewController = UINavigationController(rootViewController: vc,
                                                     tabBarTitle: "Profile",
                                                     tabBarSystemImageName: "person.crop.circle")
     }
     private func goToPhotosVC(){
-        let vc = profileFactory?.getPhotos()
-        rootViewController?.pushViewController(vc!, animated: true)
+        let vc = controllerFactory.getPhotos()
+        rootViewController?.pushViewController(vc, animated: true)
     }
 }

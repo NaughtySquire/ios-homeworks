@@ -10,7 +10,7 @@ import UIKit
 class LogInViewController: UIViewController {
 
     // MARK: - properties
-    var viewModel: LogInViewModel
+    private var viewModel: LogInViewModel
 
     // MARK: - views
 
