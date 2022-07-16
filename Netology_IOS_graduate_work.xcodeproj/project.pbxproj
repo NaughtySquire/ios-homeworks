@@ -37,6 +37,12 @@
 		79C94A722842520D00925AAA /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C94A712842520D00925AAA /* PhotosViewController.swift */; };
 		79C94A7628428CD300925AAA /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C94A7528428CD300925AAA /* PhotosCollectionViewCell.swift */; };
 		79D2825F28823C2B00C48B29 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 79D2825E28823C2B00C48B29 /* SnapKit */; };
+		79D28268288242B600C48B29 /* Queen_-_We_Will_Rock_You.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 79D28262288242B400C48B29 /* Queen_-_We_Will_Rock_You.mp3 */; };
+		79D28269288242B600C48B29 /* Queen_-_Dont_Stop_Me_Now.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 79D28263288242B500C48B29 /* Queen_-_Dont_Stop_Me_Now.mp3 */; };
+		79D2826A288242B600C48B29 /* Queen_David_Bowie_-_Under_Pressure.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 79D28264288242B500C48B29 /* Queen_David_Bowie_-_Under_Pressure.mp3 */; };
+		79D2826B288242B600C48B29 /* Queen_-_I_Want_To_Break_Free.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 79D28265288242B500C48B29 /* Queen_-_I_Want_To_Break_Free.mp3 */; };
+		79D2826C288242B600C48B29 /* Queen_-_The_Show_Must_Go_On.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 79D28266288242B500C48B29 /* Queen_-_The_Show_Must_Go_On.mp3 */; };
+		79D2826D288242B600C48B29 /* Queen_-_Another_One_Bites_The_Dust.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 79D28267288242B600C48B29 /* Queen_-_Another_One_Bites_The_Dust.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +77,12 @@
 		79C53EF0281ABB5600E56961 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		79C94A712842520D00925AAA /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		79C94A7528428CD300925AAA /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		79D28262288242B400C48B29 /* Queen_-_We_Will_Rock_You.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Queen_-_We_Will_Rock_You.mp3"; sourceTree = "<group>"; };
+		79D28263288242B500C48B29 /* Queen_-_Dont_Stop_Me_Now.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Queen_-_Dont_Stop_Me_Now.mp3"; sourceTree = "<group>"; };
+		79D28264288242B500C48B29 /* Queen_David_Bowie_-_Under_Pressure.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Queen_David_Bowie_-_Under_Pressure.mp3"; sourceTree = "<group>"; };
+		79D28265288242B500C48B29 /* Queen_-_I_Want_To_Break_Free.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Queen_-_I_Want_To_Break_Free.mp3"; sourceTree = "<group>"; };
+		79D28266288242B500C48B29 /* Queen_-_The_Show_Must_Go_On.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Queen_-_The_Show_Must_Go_On.mp3"; sourceTree = "<group>"; };
+		79D28267288242B600C48B29 /* Queen_-_Another_One_Bites_The_Dust.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Queen_-_Another_One_Bites_The_Dust.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +211,7 @@
 				7961E84D28420973001C4631 /* Data */,
 				795E1FE02874924200F590CD /* Protocols */,
 				79ECD41D28379F70003A2F68 /* Extensions */,
+				79D282602882429700C48B29 /* Resourses */,
 				794D507428183BFA00B1A28E /* AppDelegate.swift */,
 				794D507D28183BFB00B1A28E /* Assets.xcassets */,
 				794D507F28183BFB00B1A28E /* LaunchScreen.storyboard */,
@@ -237,6 +250,27 @@
 				79C141A9286F5A0B00146F90 /* ModuleFactory.swift */,
 			);
 			path = Factories;
+			sourceTree = "<group>";
+		};
+		79D282602882429700C48B29 /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
+				79D28261288242A300C48B29 /* Music */,
+			);
+			path = Resourses;
+			sourceTree = "<group>";
+		};
+		79D28261288242A300C48B29 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				79D28267288242B600C48B29 /* Queen_-_Another_One_Bites_The_Dust.mp3 */,
+				79D28263288242B500C48B29 /* Queen_-_Dont_Stop_Me_Now.mp3 */,
+				79D28265288242B500C48B29 /* Queen_-_I_Want_To_Break_Free.mp3 */,
+				79D28266288242B500C48B29 /* Queen_-_The_Show_Must_Go_On.mp3 */,
+				79D28262288242B400C48B29 /* Queen_-_We_Will_Rock_You.mp3 */,
+				79D28264288242B500C48B29 /* Queen_David_Bowie_-_Under_Pressure.mp3 */,
+			);
+			path = Music;
 			sourceTree = "<group>";
 		};
 		79ECD41D28379F70003A2F68 /* Extensions */ = {
@@ -325,8 +359,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79D2826C288242B600C48B29 /* Queen_-_The_Show_Must_Go_On.mp3 in Resources */,
+				79D28269288242B600C48B29 /* Queen_-_Dont_Stop_Me_Now.mp3 in Resources */,
+				79D2826B288242B600C48B29 /* Queen_-_I_Want_To_Break_Free.mp3 in Resources */,
 				794D508128183BFB00B1A28E /* LaunchScreen.storyboard in Resources */,
+				79D2826A288242B600C48B29 /* Queen_David_Bowie_-_Under_Pressure.mp3 in Resources */,
+				79D28268288242B600C48B29 /* Queen_-_We_Will_Rock_You.mp3 in Resources */,
 				794D507E28183BFB00B1A28E /* Assets.xcassets in Resources */,
+				79D2826D288242B600C48B29 /* Queen_-_Another_One_Bites_The_Dust.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
