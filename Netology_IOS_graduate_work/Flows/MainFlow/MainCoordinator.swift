@@ -11,17 +11,17 @@ import UIKit
 class MainCoordinator: Coordinator{
 
     private(set) var rootViewController: UITabBarController?
-    private weak var mainFactory: ModuleFactory?
+    internal var controllerFactory: ModuleFactory
     var childCoordinators = [Coordinator]()
     var userData: UserData
 
-    init(mainFactory: ModuleFactory, userData: UserData){
-        self.mainFactory = mainFactory
+    init(_ controllerFactory: ModuleFactory, _ userData: UserData){
+        self.controllerFactory = controllerFactory
         self.userData = userData
     }
 
     func start() {
-        rootViewController = mainFactory?.getMain(mainCoordinator: self, userData: userData)
+        rootViewController = controllerFactory.getMain(mainCoordinator: self, userData: userData)
     }
 
 

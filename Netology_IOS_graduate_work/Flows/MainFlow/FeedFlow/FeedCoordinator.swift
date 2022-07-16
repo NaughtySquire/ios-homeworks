@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 class FeedCoordinator: Coordinator{
-    private var feedFactory: FeedFactory
+    internal var controllerFactory: ModuleFactory
     private(set) var rootViewController: UINavigationController?
 
-    init(feedFactory: FeedFactory){
-        self.feedFactory = feedFactory
+    init(_ controllerFactory: ModuleFactory){
+        self.controllerFactory = controllerFactory
     }
 
     func start() {
@@ -21,7 +21,7 @@ class FeedCoordinator: Coordinator{
     }
 
     private func goToFeedVC(){
-        let vc = feedFactory.getFeed(coordinator: self)
+        let vc = controllerFactory.getFeed(coordinator: self)
         rootViewController = UINavigationController(rootViewController: vc,
                                                     tabBarTitle: "Feed",
                                                     tabBarSystemImageName: "newspaper.circle")
