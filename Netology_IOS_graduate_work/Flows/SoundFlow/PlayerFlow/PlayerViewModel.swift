@@ -10,8 +10,7 @@ import AVFoundation
 
 class PlayerViewModel{
     enum Action: Equatable{
-        case playButtonTapped
-        case pauseButtonTapped
+        case playPauseButtonTapped
         case stopButtonTapped
         case soundCellSelected(index: Int)
     }
@@ -28,7 +27,7 @@ class PlayerViewModel{
     // MARK: - properties
 
     var player: AVAudioPlayer?
-    var soundsUserData: [UserSoundData]?
+    var soundsUserData: [SoundData]?
     var currentSound: Sound?
     var fetchService = FetchService()
     let username: String
@@ -36,60 +35,38 @@ class PlayerViewModel{
 
     var state: State = .initial {
         didSet{
-            stateChanged?(state)
+            DispatchQueue.main.async {
+                self.stateChanged?(self.state)
+            }
         }
     }
 
     // MARK: - init
 
     init(username: String){
-        state = .loading
         self.username = username
-        let setupUserSoundsDataWorkItem = DispatchWorkItem{
+        self.state = .loading
+        DispatchQueue.global().async {
             self.setupUserSoundsData(self.username)
-        }
-        setupUserSoundsDataWorkItem.notify(queue: .global(qos: .userInitiated)){
-            self.state = .loaded
             self.setupCurrentSound(0)
-        }
-        DispatchQueue.global(qos: .userInteractive).async {
-            setupUserSoundsDataWorkItem.perform()
+            self.setupPlayer()
         }
     }
 
     // MARK: - functions
 
     func handleAction(_ action: Action){
-        guard let currentSound = self.currentSound else {
-            return
-        }
         switch action{
-        case .playButtonTapped:
-            self.state = .playing
-            let soundUrl = URL(fileURLWithPath: Bundle.main.path(forResource: currentSound.url,
-                                                                 ofType: currentSound.fileExtension)!)
-            if let player = self.player{
-                player.play()
-                return
-            }
-            do{
-                self.player = try AVAudioPlayer(contentsOf: soundUrl)
-                self.player!.play()
-            }catch{
-                print(error)
-            }
-        case .pauseButtonTapped:
-            self.state = .paused
-            self.player?.pause()
-
+        case .playPauseButtonTapped:
+            playPausePlayer()
         case .stopButtonTapped:
-            self.state = .stopped
-            self.player?.stop()
-            self.player?.currentTime = 0
-
+            stopPlayer()
         case.soundCellSelected(let index):
-            self.player?.stop()
+            self.state = .stopped
+            stopPlayer()
             setupCurrentSound(index)
+            setupPlayer()
+            playPausePlayer()
         }
     }
 
@@ -97,8 +74,8 @@ class PlayerViewModel{
         fetchService.fetchSoundsUserData(username){ [weak self] result in
             switch result{
             case .success(let model):
-                self?.state = .loaded
                 self?.soundsUserData = model
+                self?.state = .loaded
             case .failure(let error):
                 switch error{
                 case .fetchError:
@@ -113,6 +90,36 @@ class PlayerViewModel{
         }
     }
 
+    private func setupPlayer(){
+        let soundUrl = URL(fileURLWithPath: Bundle.main.path(forResource: currentSound!.url,
+                                                             ofType: currentSound!.fileExtension)!)
+        do{
+            try player = AVAudioPlayer(contentsOf: soundUrl)
+        }catch{
+            print(error)
+        }
+    }
+
+    private func playPausePlayer(){
+        if let player = player {
+            if player.isPlaying{
+                player.pause()
+                state = .paused
+            }else{
+                player.play()
+                state = .playing
+            }
+            return
+        }
+    }
+
+    private func stopPlayer(){
+        guard let player = player  else{ return }
+        player.stop()
+        player.currentTime = 0
+        state = .stopped
+    }
+
     private func setupCurrentSound(_ soundIndex: Int){
         self.fetchService.fetchSound(artist: (self.soundsUserData?[soundIndex].artist),
                                      name: (self.soundsUserData?[soundIndex].name),
@@ -120,13 +127,7 @@ class PlayerViewModel{
             switch result{
             case .success(let model):
                 self?.currentSound = model
-                let soundUrl = URL(fileURLWithPath: Bundle.main.path(forResource: self?.currentSound!.url,
-                                                                     ofType: self?.currentSound!.fileExtension)!)
-                do{
-                    self?.player = try AVAudioPlayer(contentsOf: soundUrl)
-                } catch{
-                    print(error)
-                }
+
             case .failure(let error):
                 switch error{
                 case .fetchError:

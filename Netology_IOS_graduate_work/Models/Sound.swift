@@ -17,7 +17,7 @@ let soundsLibrary: [String: [String: Sound]] =  [
         "Another One Bites The Dust": Sound(url: "Queen - Another One Bites The Dust",
                                             fileExtension: ".mp3"),
 
-        "Queen - Dont Stop Me Now": Sound(url: "Queen - Dont Stop Me Now",
+        "Dont Stop Me Now": Sound(url: "Queen - Dont Stop Me Now",
                                           fileExtension: ".mp3"),
 
         "I Want To Break Free": Sound(url: "Queen - I Want To Break Free",

@@ -12,7 +12,8 @@ import SnapKit
 class PlayerViewController: UIViewController {
 
     // MARK: - properties
-    var viewModel: PlayerViewModel? = PlayerViewModel(username: "wolk")
+    var viewModel: PlayerViewModel?
+    let cellIdentifier = "cell"
 
     // MARK: - views
 
@@ -41,6 +42,20 @@ class PlayerViewController: UIViewController {
         return button
     }()
 
+    private lazy var loadingIndicatorView: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        return indicator
+    }()
+
+    private lazy var soundsTableView: UITableView = {
+        let table = UITableView()
+        table.alpha = 0
+        table.delegate = self
+        table.dataSource = self
+        table.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        return table
+    }()
+
     // MARK: - init
 
 
@@ -52,24 +67,18 @@ class PlayerViewController: UIViewController {
         view.backgroundColor = .white
         addSubviews()
         addConstraints()
+        setupViewModel()
     }
 
     // MARK: - handlers
     
     @objc
     func playPauseButtonTapped(_ button: UIButton){
-        if button.isSelected{
-            viewModel?.handleAction(.pauseButtonTapped)
-            button.isSelected = false
-        }else{
-            viewModel?.handleAction(.playButtonTapped)
-            button.isSelected = true
-        }
+        viewModel?.handleAction(.playPauseButtonTapped)
     }
 
     @objc
     func stopButtonTapped(){
-        self.playPauseButton.isSelected  = false
         viewModel?.handleAction(.stopButtonTapped)
     }
 
@@ -79,10 +88,34 @@ class PlayerViewController: UIViewController {
         [playPauseButton, stopButton].forEach{
             self.soundControllersContainerView.addSubview($0)
         }
-        [soundControllersContainerView].forEach{
+        [soundControllersContainerView, loadingIndicatorView, soundsTableView].forEach{
             self.view.addSubview($0)
         }
     }
+
+    func setupViewModel(){
+        viewModel = PlayerViewModel(username: "wolk")
+        self.viewModel?.stateChanged = { [weak self] state in
+			switch state{
+			case .initial:
+			    ()
+			case .loading:
+			    self?.loadingIndicatorView.startAnimating()
+			case .loaded:
+			    self?.loadingIndicatorView.stopAnimating()
+			    self?.soundsTableView.reloadData()
+			    self?.soundsTableView.alpha = 1
+			case .playing:
+			    self?.playPauseButton.isSelected = true
+			case .paused:
+			    self?.playPauseButton.isSelected = false
+			case .stopped:
+			    self?.playPauseButton.isSelected = false
+            }
+        }
+    }
+
+    // MARK: - constraints
 
     func addConstraints(){
 
@@ -100,5 +133,36 @@ class PlayerViewController: UIViewController {
             maker.left.equalTo(playPauseButton.snp_rightMargin).offset(10)
             maker.width.equalTo(stopButton.snp.height)
         }
+        loadingIndicatorView.snp.makeConstraints{ maker in
+            maker.top.equalTo(stopButton.snp_bottomMargin).offset(10)
+            maker.centerX.equalToSuperview()
+        }
+        soundsTableView.snp.makeConstraints{ maker in
+            maker.top.equalTo(stopButton.snp_bottomMargin).offset(10)
+            maker.left.right.bottom.equalToSuperview()
+        }
     }
+}
+
+// MARK: - extension - TableViewDelegate
+extension PlayerViewController: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel?.handleAction(.soundCellSelected(index: indexPath.row))
+    }
+}
+// MARK: - extension - TableViewDataSource
+extension PlayerViewController: UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel?.soundsUserData?.count ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        var content = cell.defaultContentConfiguration()
+        let soundData = viewModel?.soundsUserData?[indexPath.row]
+        content.text = "\(soundData?.artist ?? "") - \(soundData?.name ?? "")"
+        cell.contentConfiguration = content
+        return cell
+    }
+
 }

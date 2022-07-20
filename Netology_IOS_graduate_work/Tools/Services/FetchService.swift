@@ -32,7 +32,7 @@ class FetchService{
         }
     }
 
-    func fetchSoundsUserData(_ username: String?, completion: @escaping ((Result<[UserSoundData], FetchError>) -> ())){
+    func fetchSoundsUserData(_ username: String?, completion: @escaping ((Result<[SoundData], FetchError>) -> ())){
         guard let username = username else {
             completion(.failure(FetchError.noInputData))
             return
@@ -54,7 +54,7 @@ class FetchService{
             return
         }
 
-        DispatchQueue.global().async{
+        DispatchQueue.global().sync{
             usleep(500_000)
             guard let sound = soundsLibrary[artist]?[name] else{
                 completion(.failure(FetchError.noOutputData))

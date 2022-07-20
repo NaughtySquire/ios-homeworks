@@ -62,7 +62,9 @@ class SoundViewController: UIViewController {
     func setupPageViewController(){
         self.addChild(soundOperationsPageViewController)
         soundOperationsPageViewController.didMove(toParent: self)
-        adapter = PageViewControllerSegmentedAdapter(pageViewController: soundOperationsPageViewController, segmentControl: soundOperationPageControl, viewControllers: controllers)
+        adapter = PageViewControllerSegmentedAdapter(pageViewController: soundOperationsPageViewController,
+                                                     segmentControl: soundOperationPageControl,
+                                                     viewControllers: controllers)
 
     }
 

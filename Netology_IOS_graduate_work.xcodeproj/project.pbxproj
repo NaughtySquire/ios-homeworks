@@ -46,7 +46,7 @@
 		79D2826D288242B600C48B29 /* Queen - Another One Bites The Dust.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 79D28267288242B600C48B29 /* Queen - Another One Bites The Dust.mp3 */; };
 		79DF018E2885FD7300767A95 /* PageViewControllerSegmentedAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF018D2885FD7300767A95 /* PageViewControllerSegmentedAdapter.swift */; };
 		79DF01922886197700767A95 /* RecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF01912886197700767A95 /* RecorderViewController.swift */; };
-		79DF01942886EB1500767A95 /* UserSoundData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF01932886EB1500767A95 /* UserSoundData.swift */; };
+		79DF01942886EB1500767A95 /* SoundData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF01932886EB1500767A95 /* SoundData.swift */; };
 		79DF01962886EB7500767A95 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF01952886EB7500767A95 /* PlayerViewModel.swift */; };
 		79DF01982886FD9E00767A95 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF01972886FD9E00767A95 /* Sound.swift */; };
 /* End PBXBuildFile section */
@@ -92,7 +92,7 @@
 		79D28267288242B600C48B29 /* Queen - Another One Bites The Dust.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Queen - Another One Bites The Dust.mp3"; sourceTree = "<group>"; };
 		79DF018D2885FD7300767A95 /* PageViewControllerSegmentedAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllerSegmentedAdapter.swift; sourceTree = "<group>"; };
 		79DF01912886197700767A95 /* RecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderViewController.swift; sourceTree = "<group>"; };
-		79DF01932886EB1500767A95 /* UserSoundData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSoundData.swift; sourceTree = "<group>"; };
+		79DF01932886EB1500767A95 /* SoundData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundData.swift; sourceTree = "<group>"; };
 		79DF01952886EB7500767A95 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		79DF01972886FD9E00767A95 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,7 +115,7 @@
 				79398E70281AC84700E2648C /* Post.swift */,
 				79C141A1286F2D7500146F90 /* User.swift */,
 				795E1FEC2874A48B00F590CD /* UserData.swift */,
-				79DF01932886EB1500767A95 /* UserSoundData.swift */,
+				79DF01932886EB1500767A95 /* SoundData.swift */,
 				79DF01972886FD9E00767A95 /* Sound.swift */,
 			);
 			path = Models;
@@ -230,9 +230,8 @@
 			isa = PBXGroup;
 			children = (
 				7927B4592874EFC200DD339C /* Flows */,
-				79C141A8286F59F600146F90 /* Factories */,
+				79DF019D28884EF200767A95 /* Tools */,
 				791A9523283CD3C6003FB6B4 /* Models */,
-				79C141A3286F2EBB00146F90 /* Services */,
 				795E1FE02874924200F590CD /* Protocols */,
 				79ECD41D28379F70003A2F68 /* Extensions */,
 				79D282602882429700C48B29 /* Resourses */,
@@ -256,7 +255,6 @@
 			isa = PBXGroup;
 			children = (
 				79C141A6286F2FFB00146F90 /* FetchService.swift */,
-				79DF018D2885FD7300767A95 /* PageViewControllerSegmentedAdapter.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -305,6 +303,24 @@
 				79DF01912886197700767A95 /* RecorderViewController.swift */,
 			);
 			path = RecordFlow;
+			sourceTree = "<group>";
+		};
+		79DF019D28884EF200767A95 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				79C141A8286F59F600146F90 /* Factories */,
+				79DF019E28884F0200767A95 /* Adapters */,
+				79C141A3286F2EBB00146F90 /* Services */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		79DF019E28884F0200767A95 /* Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				79DF018D2885FD7300767A95 /* PageViewControllerSegmentedAdapter.swift */,
+			);
+			path = Adapters;
 			sourceTree = "<group>";
 		};
 		79ECD41D28379F70003A2F68 /* Extensions */ = {
@@ -415,7 +431,7 @@
 				79DF01982886FD9E00767A95 /* Sound.swift in Sources */,
 				798C61542836AEF8009EAF50 /* UIView+extension.swift in Sources */,
 				795E1FEB2874A3B000F590CD /* FeedCoordinator.swift in Sources */,
-				79DF01942886EB1500767A95 /* UserSoundData.swift in Sources */,
+				79DF01942886EB1500767A95 /* SoundData.swift in Sources */,
 				79C53EF1281ABB5600E56961 /* PostViewController.swift in Sources */,
 				79493A962882F13A00E8C7CD /* SoundViewController.swift in Sources */,
 				794D507528183BFA00B1A28E /* AppDelegate.swift in Sources */,
