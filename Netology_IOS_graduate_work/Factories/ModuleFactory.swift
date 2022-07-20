@@ -11,26 +11,21 @@ import UIKit
 
 
 class ModuleFactory{
-    enum ControllerName{
-        case logIn
-        case profile
-        case photos
-        case feed
-        case post
-        case info
-    }
+
     // MARK: - main
     func getMain(mainCoordinator: MainCoordinator, userData: UserData) -> UITabBarController{
-        let mainController = UITabBarController()
         let profileCoordinator = ProfileCoordinator(self, userData)
         let feedCoordinator = FeedCoordinator(self)
-        mainCoordinator.childCoordinators = [profileCoordinator, feedCoordinator]
         profileCoordinator.start()
         feedCoordinator.start()
+        
+        mainCoordinator.childCoordinators = [profileCoordinator, feedCoordinator]
+        let mainController = UITabBarController()
         mainController.viewControllers = [
             profileCoordinator.rootViewController!,
             feedCoordinator.rootViewController!
         ]
+
         return mainController
     }
 
@@ -60,20 +55,26 @@ class ModuleFactory{
         return vc
     }
     // MARK: - feed
-    func getFeed(coordinator: FeedCoordinator) -> UIViewController {
+    func getFeed() -> UIViewController {
         let vc = FeedViewController()
         return vc
     }
 
-    func getPost(coordinator: FeedCoordinator) -> PostViewController {
+    func getPost() -> PostViewController {
         let vc = PostViewController()
         vc.post = Post(title: "Новый пост")
         return vc
 
     }
 
-    func getInfo(coordinator: FeedCoordinator) -> InfoViewController {
+    func getInfo() -> InfoViewController {
         let vc = InfoViewController()
+        return vc
+    }
+
+    func getTest(_ backgroundColor: UIColor) -> UIViewController{
+        let vc = UIViewController()
+        vc.view.backgroundColor = backgroundColor
         return vc
     }
 

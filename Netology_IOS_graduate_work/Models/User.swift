@@ -21,3 +21,4 @@ class User: Equatable{
         self.password = password
     }
 }
+

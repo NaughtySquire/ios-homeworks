@@ -10,6 +10,7 @@ import Foundation
 class LogInViewModel{
 
     // MARK: - enums
+
     enum Action{
         case viewIsLoaded
         case logInButtonTapped(username: String, password: String)

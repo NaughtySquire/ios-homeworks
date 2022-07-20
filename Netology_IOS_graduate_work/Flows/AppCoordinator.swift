@@ -17,7 +17,7 @@ class AppCoordinator: Coordinator{
 
     private var window: UIWindow
     var controllerFactory = ModuleFactory()
-    private var childCoordinators = [any Coordinator]()
+    private var childCoordinators = [Coordinator]()
     private var isLoggedIn = false
     
     // MARK: - init
@@ -45,7 +45,7 @@ class AppCoordinator: Coordinator{
         let mainCoordinator = MainCoordinator(controllerFactory, userData)
         self.childCoordinators = [mainCoordinator]
         mainCoordinator.start()
-        window.rootViewController = mainCoordinator.rootViewController
+//        window.rootViewController = PageViewController()
     }
 
     private func goToLogInFlow(){
@@ -56,7 +56,8 @@ class AppCoordinator: Coordinator{
             self?.goToMainFlow(userData: userData)
         }
         logInCoordinator.start()
-        window.rootViewController = logInCoordinator.rootViewController!
+        window.rootViewController = logInCoordinator.rootViewController
+
     }
 
 }

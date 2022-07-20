@@ -7,12 +7,14 @@
 
 import Foundation
 
-enum FetchErrors: Error{
+enum FetchError: Error{
     case fetchError
+    case noInputData
+    case noOutputData
 }
 
 class FetchService{
-    func fetchUser(username: String, password: String, completion: @escaping (Result<UserData, Error>) -> Void){
+    func fetchUser(username: String, password: String, completion: @escaping (Result<UserData, FetchError>) -> Void){
         DispatchQueue.global().async{
             sleep(2)
             if username == "wolk" && password == "Пароль" {
@@ -25,8 +27,41 @@ class FetchService{
                                 )
                        )
             }else{
-                completion(.failure(FetchErrors.fetchError))
+                completion(.failure(FetchError.fetchError))
             }
         }
     }
+
+    func fetchSoundsUserData(_ username: String?, completion: @escaping ((Result<[UserSoundData], FetchError>) -> ())){
+        guard let username = username else {
+            completion(.failure(FetchError.noInputData))
+            return
+        }
+        DispatchQueue.global().sync{
+            sleep(1)
+            guard let soundsData = usersSoundsData[username] else{
+                completion(.failure(FetchError.noOutputData))
+                return
+            }
+            completion(.success(soundsData))
+
+        }
+    }
+
+    func fetchSound(artist: String?, name: String?, completion: @escaping ((Result<Sound, FetchError>) -> ())){
+        guard let artist = artist, let name = name else {
+            completion(.failure(FetchError.noInputData))
+            return
+        }
+
+        DispatchQueue.global().async{
+            usleep(500_000)
+            guard let sound = soundsLibrary[artist]?[name] else{
+                completion(.failure(FetchError.noOutputData))
+                return
+            }
+            completion(.success(sound))
+        }
+    }
+
 }
