@@ -49,6 +49,7 @@
 		79DF01942886EB1500767A95 /* SoundData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF01932886EB1500767A95 /* SoundData.swift */; };
 		79DF01962886EB7500767A95 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF01952886EB7500767A95 /* PlayerViewModel.swift */; };
 		79DF01982886FD9E00767A95 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF01972886FD9E00767A95 /* Sound.swift */; };
+		79DF01A1288859F600767A95 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79DF01A0288859F600767A95 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +96,7 @@
 		79DF01932886EB1500767A95 /* SoundData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundData.swift; sourceTree = "<group>"; };
 		79DF01952886EB7500767A95 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		79DF01972886FD9E00767A95 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
+		79DF01A0288859F600767A95 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79DF01A1288859F600767A95 /* AVFoundation.framework in Frameworks */,
 				79D2825F28823C2B00C48B29 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,7 +198,6 @@
 				79C1419C286F0F2F00146F90 /* AppCoordinator.swift */,
 				7927B4522874EE5100DD339C /* LogInFlow */,
 				79F2907D2875A8DE002DE458 /* MainFlow */,
-				79493A8C2882D04700E8C7CD /* SoundFlow */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -204,7 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				79493A952882F13A00E8C7CD /* SoundViewController.swift */,
-				79DF01992887354F00767A95 /* PlayerFlow */,
+				79DF01992887354F00767A95 /* Player */,
 				79DF019A2887356B00767A95 /* RecordFlow */,
 			);
 			path = SoundFlow;
@@ -215,6 +217,7 @@
 			children = (
 				794D507328183BFA00B1A28E /* Netology_IOS_graduate_work */,
 				794D507228183BFA00B1A28E /* Products */,
+				79DF019F288859F600767A95 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -288,13 +291,13 @@
 			path = Music;
 			sourceTree = "<group>";
 		};
-		79DF01992887354F00767A95 /* PlayerFlow */ = {
+		79DF01992887354F00767A95 /* Player */ = {
 			isa = PBXGroup;
 			children = (
 				79493A912882D0CD00E8C7CD /* PlayerViewController.swift */,
 				79DF01952886EB7500767A95 /* PlayerViewModel.swift */,
 			);
-			path = PlayerFlow;
+			path = Player;
 			sourceTree = "<group>";
 		};
 		79DF019A2887356B00767A95 /* RecordFlow */ = {
@@ -309,8 +312,8 @@
 			isa = PBXGroup;
 			children = (
 				79C141A8286F59F600146F90 /* Factories */,
-				79DF019E28884F0200767A95 /* Adapters */,
 				79C141A3286F2EBB00146F90 /* Services */,
+				79DF019E28884F0200767A95 /* Adapters */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -321,6 +324,14 @@
 				79DF018D2885FD7300767A95 /* PageViewControllerSegmentedAdapter.swift */,
 			);
 			path = Adapters;
+			sourceTree = "<group>";
+		};
+		79DF019F288859F600767A95 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				79DF01A0288859F600767A95 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		79ECD41D28379F70003A2F68 /* Extensions */ = {
@@ -338,6 +349,7 @@
 				795E1FEE2874BDEB00F590CD /* MainCoordinator.swift */,
 				7927B4532874EEAD00DD339C /* ProfileFlow */,
 				7927B4572874EF5C00DD339C /* FeedFlow */,
+				79493A8C2882D04700E8C7CD /* SoundFlow */,
 			);
 			path = MainFlow;
 			sourceTree = "<group>";

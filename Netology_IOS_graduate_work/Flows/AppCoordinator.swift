@@ -45,7 +45,9 @@ class AppCoordinator: Coordinator{
         let mainCoordinator = MainCoordinator(controllerFactory, userData)
         self.childCoordinators = [mainCoordinator]
         mainCoordinator.start()
-//        window.rootViewController = PageViewController()
+        let rootVC = controllerFactory.getMain(mainCoordinator: mainCoordinator,
+                                               userData: userData)
+        window.rootViewController = rootVC
     }
 
     private func goToLogInFlow(){

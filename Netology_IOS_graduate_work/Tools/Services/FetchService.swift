@@ -38,7 +38,7 @@ class FetchService{
             return
         }
         DispatchQueue.global().sync{
-            sleep(1)
+            sleep(2)
             guard let soundsData = usersSoundsData[username] else{
                 completion(.failure(FetchError.noOutputData))
                 return

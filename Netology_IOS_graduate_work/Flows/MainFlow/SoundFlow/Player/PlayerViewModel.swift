@@ -9,9 +9,11 @@ import Foundation
 import AVFoundation
 
 class PlayerViewModel{
-    enum Action: Equatable{
+    enum Action{
         case playPauseButtonTapped
         case stopButtonTapped
+        case nextButtonTapped
+        case previousButtonTapped
         case soundCellSelected(index: Int)
     }
 
@@ -28,6 +30,7 @@ class PlayerViewModel{
 
     var player: AVAudioPlayer?
     var soundsUserData: [SoundData]?
+    var currentSoundData: SoundData?
     var currentSound: Sound?
     var fetchService = FetchService()
     let username: String
@@ -45,8 +48,8 @@ class PlayerViewModel{
 
     init(username: String){
         self.username = username
-        self.state = .loading
         DispatchQueue.global().async {
+            self.state = .loading
             self.setupUserSoundsData(self.username)
             self.setupCurrentSound(0)
             self.setupPlayer()
@@ -58,49 +61,29 @@ class PlayerViewModel{
     func handleAction(_ action: Action){
         switch action{
         case .playPauseButtonTapped:
-            playPausePlayer()
+            playOrPausePlayer()
         case .stopButtonTapped:
             stopPlayer()
+        case .nextButtonTapped:
+            stopPlayer()
+            setupNextSound()
+            setupPlayer()
+            playOrPausePlayer()
+        case .previousButtonTapped:
+            stopPlayer()
+            setupPreviousSound()
+            setupPlayer()
+            playOrPausePlayer()
         case.soundCellSelected(let index):
             self.state = .stopped
             stopPlayer()
             setupCurrentSound(index)
             setupPlayer()
-            playPausePlayer()
+            playOrPausePlayer()
         }
     }
 
-    private func setupUserSoundsData(_ username: String){
-        fetchService.fetchSoundsUserData(username){ [weak self] result in
-            switch result{
-            case .success(let model):
-                self?.soundsUserData = model
-                self?.state = .loaded
-            case .failure(let error):
-                switch error{
-                case .fetchError:
-                    self?.setupUserSoundsData(username)
-                    print(error)
-                case .noInputData:
-                    print(error)
-                case .noOutputData:
-                    print(error)
-                }
-            }
-        }
-    }
-
-    private func setupPlayer(){
-        let soundUrl = URL(fileURLWithPath: Bundle.main.path(forResource: currentSound!.url,
-                                                             ofType: currentSound!.fileExtension)!)
-        do{
-            try player = AVAudioPlayer(contentsOf: soundUrl)
-        }catch{
-            print(error)
-        }
-    }
-
-    private func playPausePlayer(){
+    private func playOrPausePlayer(){
         if let player = player {
             if player.isPlaying{
                 player.pause()
@@ -120,6 +103,39 @@ class PlayerViewModel{
         state = .stopped
     }
 
+    private func setupUserSoundsData(_ username: String){
+        fetchService.fetchSoundsUserData(username){ [weak self] result in
+            switch result{
+            case .success(let model):
+                self?.soundsUserData = model
+                self?.currentSoundData = model[0]
+                self?.state = .loaded
+            case .failure(let error):
+                switch error{
+                case .fetchError:
+                    self?.setupUserSoundsData(username)
+                    print(error)
+                case .noInputData:
+                    print(error)
+                case .noOutputData:
+                    print(error)
+                }
+            }
+        }
+    }
+
+    private func setupPlayer(){
+        let path = Bundle.main.path(forResource: currentSound!.url,
+                                    ofType: currentSound!.fileExtension)
+        let soundUrl = URL(fileURLWithPath: path ?? "")
+        do{
+            try player = AVAudioPlayer(contentsOf: soundUrl)
+            player?.prepareToPlay()
+        }catch{
+            print(error)
+        }
+    }
+
     private func setupCurrentSound(_ soundIndex: Int){
         self.fetchService.fetchSound(artist: (self.soundsUserData?[soundIndex].artist),
                                      name: (self.soundsUserData?[soundIndex].name),
@@ -127,7 +143,7 @@ class PlayerViewModel{
             switch result{
             case .success(let model):
                 self?.currentSound = model
-
+                self?.currentSoundData = self?.soundsUserData?[soundIndex]
             case .failure(let error):
                 switch error{
                 case .fetchError:
@@ -141,5 +157,23 @@ class PlayerViewModel{
             }
         })
     }
-}
 
+    private func setupNextSound(){
+        guard let soundsUserData = soundsUserData,
+              let currentSoundIndex = soundsUserData.firstIndex(where: {
+            $0.artist == currentSoundData?.artist && $0.name == currentSoundData?.name
+        })else { return }
+        guard currentSoundIndex != soundsUserData.count - 1 else { return}
+        setupCurrentSound(currentSoundIndex + 1)
+    }
+
+    private func setupPreviousSound(){
+        guard let soundsUserData = soundsUserData,
+              let currentSoundIndex = soundsUserData.firstIndex(where: {
+            $0.artist == currentSoundData?.artist && $0.name == currentSoundData?.name
+        })else { return }
+        guard currentSoundIndex != 0 else { return}
+        setupCurrentSound(currentSoundIndex - 1)
+    }
+
+}

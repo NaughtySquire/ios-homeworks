@@ -23,6 +23,7 @@ class ModuleFactory{
         let mainController = UITabBarController()
         mainController.viewControllers = [
             profileCoordinator.rootViewController!,
+            self.getSound(),
             feedCoordinator.rootViewController!
         ]
 
@@ -69,6 +70,32 @@ class ModuleFactory{
 
     func getInfo() -> InfoViewController {
         let vc = InfoViewController()
+        return vc
+    }
+
+    // MARK: - sound
+
+    func getSound() -> SoundViewController{
+        let vc = SoundViewController()
+        vc.setupPageViewController()
+        vc.addSubviews()
+        vc.addConstraints()
+        vc.view.backgroundColor = .white
+        vc.tabBarItem = UITabBarItem(title: "Sound",
+                                  image: UIImage(systemName: "music.note.list"),
+                                  selectedImage: UIImage(systemName: "music.note.list"))
+        return vc
+    }
+
+    func getPlayer() -> PlayerViewController{
+        let vc = PlayerViewController()
+        vc.addSubviews()
+        vc.addConstraints()
+        return vc
+    }
+
+    func getRecorder() -> RecorderViewController{
+        let vc = RecorderViewController()
         return vc
     }
 

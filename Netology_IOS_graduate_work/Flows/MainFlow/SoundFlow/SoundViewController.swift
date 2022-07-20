@@ -19,8 +19,8 @@ class SoundViewController: UIViewController {
 
     // MARK: - child controllers
 
-    private lazy var controllers = [PlayerViewController(),
-                                    RecorderViewController()]
+    private lazy var controllers = [factory.getPlayer(),
+                                    factory.getRecorder()]
 
     // MARK: - views
 
@@ -49,14 +49,6 @@ class SoundViewController: UIViewController {
                                   animated: true)
         return pageVC
     }()
-
-    // MARK: - lify cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupPageViewController()
-        addSubviews()
-        addConstraints()
-    }
     
     // MARK: - functions
     func setupPageViewController(){
